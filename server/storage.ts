@@ -188,7 +188,18 @@ export class MemStorage implements IStorage {
 
   async createConfiguration(insertConfig: InsertConfiguration): Promise<Configuration> {
     const id = this.currentConfigId++;
-    const config: Configuration = { ...insertConfig, id };
+    const config: Configuration = {
+      id,
+      productId: insertConfig.productId,
+      actionType: insertConfig.actionType,
+      gauge: insertConfig.gauge,
+      barrelLength: insertConfig.barrelLength,
+      stockMaterial: insertConfig.stockMaterial,
+      finish: insertConfig.finish,
+      customBranding: insertConfig.customBranding ?? null,
+      specialRequests: insertConfig.specialRequests ?? null,
+      estimatedPrice: insertConfig.estimatedPrice
+    };
     this.configurations.set(id, config);
     return config;
   }
@@ -199,9 +210,16 @@ export class MemStorage implements IStorage {
 
   async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
     const id = this.currentInquiryId++;
-    const inquiry: Inquiry = { 
-      ...insertInquiry, 
+    const inquiry: Inquiry = {
       id,
+      firstName: insertInquiry.firstName,
+      lastName: insertInquiry.lastName,
+      company: insertInquiry.company ?? null,
+      email: insertInquiry.email,
+      phone: insertInquiry.phone ?? null,
+      inquiryType: insertInquiry.inquiryType,
+      message: insertInquiry.message,
+      configurationId: insertInquiry.configurationId ?? null,
       createdAt: new Date().toISOString()
     };
     this.inquiries.set(id, inquiry);
