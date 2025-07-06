@@ -181,7 +181,7 @@ export default function ShotgunBuilder() {
               {/* Shotgun Preview Image */}
               <div className="bg-white rounded-lg p-4 mb-6">
                 <img
-                  src="https://pixabay.com/get/g501258b673a90f55407e759d4849b735cc56cd034c71b94eda1141c8091f12d7ebd7cc000a8aa53f7eef50c0e865e8b0d9e9e61a7b9c8b4dcbd4b81c371425cb_1280.jpg"
+                  src="https://via.placeholder.com/600x300/374151/ffffff?text=CUSTOM+CONFIGURATION+PREVIEW"
                   alt="Configured shotgun preview"
                   className="w-full h-40 object-cover rounded-lg"
                 />

@@ -42,7 +42,7 @@ export default function HeroSection() {
           </div>
           <div className="relative">
             <img
-              src="https://pixabay.com/get/gbe0a55cad8a6e7bbd962451f829662b45cd0839eaf2c5ae5b9dc435f42f9b9a9d47b6bf0e27a792b443ed203c1489de14ca1af6a5ace3bc706fb0cfc20c262d9_1280.jpg"
+              src="https://via.placeholder.com/800x500/1e40af/ffffff?text=UPLAND+ARMS+PE-SERIES"
               alt="Premium Turkish shotgun display"
               className="rounded-xl shadow-2xl w-full"
             />

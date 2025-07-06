@@ -43,7 +43,7 @@ export class MemStorage implements IStorage {
         category: "bullpup",
         gauge: "12",
         basePrice: "849.00",
-        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+        imageUrl: "https://via.placeholder.com/600x400/1e40af/ffffff?text=PE-701+Bullpup",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "18.50\"",
@@ -60,7 +60,7 @@ export class MemStorage implements IStorage {
         category: "over-under",
         gauge: "12",
         basePrice: "1,149.00",
-        imageUrl: "https://pixabay.com/get/g22860e6eef9895235616107e4f5abf2feb4b5cbd372980d6368f6ae4a9d456e2cf9f0af34bd5694bce6a72461ce87219a2e3dcc81ff915893909a58a5312cd9a_1280.jpg",
+        imageUrl: "https://via.placeholder.com/600x400/8b5cf6/ffffff?text=PE-601+Over-Under",
         specifications: JSON.stringify({
           action: "Over-Under",
           barrel: "27.95\"",
@@ -77,7 +77,7 @@ export class MemStorage implements IStorage {
         category: "semi-auto",
         gauge: "12",
         basePrice: "749.00",
-        imageUrl: "https://pixabay.com/get/g9aef70e48d98b53d4f747afe54f1129c4b71170dd68a68919ff605a67273f2b3961280bc880b7b2b704fd9ef5dd1c89ca0494dd18c69c38818774ec56b4fa6f4_1280.jpg",
+        imageUrl: "https://via.placeholder.com/600x400/f59e0b/ffffff?text=PE-501+Semi-Auto",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "18.50\"",
@@ -94,7 +94,7 @@ export class MemStorage implements IStorage {
         category: "pump-action",
         gauge: "12",
         basePrice: "629.00",
-        imageUrl: "https://pixabay.com/get/g65c4d41ae2cd21e4a8eff39931076c30b690b96aca20bf915e76cad3438943c6043bfb50d0b4d4f09f01e8dffb372550e3f35663d68c163abcc170ece0fc0851_1280.jpg",
+        imageUrl: "https://via.placeholder.com/600x400/dc2626/ffffff?text=PE-401+Pump+Action",
         specifications: JSON.stringify({
           action: "Pump action",
           barrel: "24\"-28\"",
@@ -111,7 +111,7 @@ export class MemStorage implements IStorage {
         category: "semi-auto",
         gauge: "12",
         basePrice: "799.00",
-        imageUrl: "https://pixabay.com/get/g2123cbda2c587c279541831f2a689eb5cb9b70c72b44be605da5d3f7041f01e6c66794dbd23d59690036d40440548656314d83d437659450042b558f50c7acc7_1280.jpg",
+        imageUrl: "https://via.placeholder.com/600x400/059669/ffffff?text=PE-301+Semi-Auto",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "20\"-28\"",
