@@ -43,7 +43,7 @@ export class MemStorage implements IStorage {
         category: "bullpup",
         gauge: "12",
         basePrice: "849.00",
-        imageUrl: "/uploads/pe-701/pe701black.jpeg",
+        imageUrl: "/uploads/pe-701/pe701bronze.jpeg",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "18.50\"",
