@@ -43,7 +43,7 @@ export class MemStorage implements IStorage {
         category: "bullpup",
         gauge: "12",
         basePrice: "849.00",
-        imageUrl: "https://via.placeholder.com/600x400/1e40af/ffffff?text=PE-701+Bullpup",
+        imageUrl: "https://via.placeholder.com/600x400/2D2D2D/FFD700?text=PE-701+Bullpup",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "18.50\"",
@@ -60,7 +60,7 @@ export class MemStorage implements IStorage {
         category: "over-under",
         gauge: "12",
         basePrice: "1,149.00",
-        imageUrl: "https://via.placeholder.com/600x400/8b5cf6/ffffff?text=PE-601+Over-Under",
+        imageUrl: "https://via.placeholder.com/600x400/2D2D2D/FFD700?text=PE-601+Over-Under",
         specifications: JSON.stringify({
           action: "Over-Under",
           barrel: "27.95\"",
@@ -77,7 +77,7 @@ export class MemStorage implements IStorage {
         category: "semi-auto",
         gauge: "12",
         basePrice: "749.00",
-        imageUrl: "https://via.placeholder.com/600x400/f59e0b/ffffff?text=PE-501+Semi-Auto",
+        imageUrl: "https://via.placeholder.com/600x400/2D2D2D/FFD700?text=PE-501+Semi-Auto",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "18.50\"",
@@ -94,7 +94,7 @@ export class MemStorage implements IStorage {
         category: "pump-action",
         gauge: "12",
         basePrice: "629.00",
-        imageUrl: "https://via.placeholder.com/600x400/dc2626/ffffff?text=PE-401+Pump+Action",
+        imageUrl: "https://via.placeholder.com/600x400/2D2D2D/FFD700?text=PE-401+Pump+Action",
         specifications: JSON.stringify({
           action: "Pump action",
           barrel: "24\"-28\"",

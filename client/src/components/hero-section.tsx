@@ -10,14 +10,14 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="pt-20 gradient-primary text-primary-foreground">
+    <section className="pt-20 bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               White Label Opportunity: Premium Shotguns For Your Brand
             </h1>
-            <p className="text-xl mb-8 text-primary-foreground/80">
+            <p className="text-xl mb-8 text-muted-foreground">
               Elevate your product line with our tactical and sporting shotguns under your own brand name. Our Turkish manufacturing facilities combine state-of-the-art engineering with generations of craftsmanship, offering market-ready firearms with exceptional margins.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -42,7 +42,7 @@ export default function HeroSection() {
           </div>
           <div className="relative">
             <img
-              src="https://via.placeholder.com/800x500/1e40af/ffffff?text=UPLAND+ARMS+PE-SERIES"
+              src="https://via.placeholder.com/800x500/2D2D2D/FFD700?text=UPLAND+ARMS+PE-SERIES"
               alt="Premium Turkish shotgun display"
               className="rounded-xl shadow-2xl w-full"
               onError={(e) => {
