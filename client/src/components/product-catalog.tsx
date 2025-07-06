@@ -16,9 +16,10 @@ export default function ProductCatalog() {
 
   const filterOptions = [
     { value: "all", label: "All Models" },
+    { value: "bullpup", label: "Bullpup" },
     { value: "over-under", label: "Over/Under" },
-    { value: "side-by-side", label: "Side-by-Side" },
-    { value: "semi-auto", label: "Semi-Auto" }
+    { value: "semi-auto", label: "Semi-Auto" },
+    { value: "pump-action", label: "Pump Action" }
   ];
 
   const filteredProducts = products?.filter(product => 
@@ -55,10 +56,10 @@ export default function ProductCatalog() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-            Premium Shotgun Catalog
+            PE-Series: Your White Label Product Line
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our collection of premium Turkish shotguns available for white label manufacturing
+            Leverage our premium Turkish-manufactured shotgun line under your own brand. Our PE-series firearms offer complete access to proven designs with your company's branding, allowing immediate market entry without manufacturing investment.
           </p>
         </div>
         

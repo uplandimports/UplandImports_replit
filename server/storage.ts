@@ -38,129 +38,86 @@ export class MemStorage implements IStorage {
     const sampleProducts: Product[] = [
       {
         id: 1,
-        name: "Elite O/U 12GA",
-        description: "Premium over/under with Turkish walnut stock and precision engineering",
-        category: "over-under",
+        name: "PE-701 Bullpup",
+        description: "Compact tactical design with reliable performance. Perfect balance of innovative bullpup configuration and dependable operation.",
+        category: "bullpup",
         gauge: "12",
-        basePrice: "850.00",
+        basePrice: "849.00",
         imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
         specifications: JSON.stringify({
-          barrels: ["28\"", "30\""],
-          choke: "Multi-choke",
-          stock: "Turkish Walnut",
-          weight: "7.5 lbs"
+          action: "Semi-automatic",
+          barrel: "18.50\"",
+          overall: "29.13\"",
+          capacity: "5+1 rounds",
+          chamber: "3\" chamber"
         }),
         available: true
       },
       {
         id: 2,
-        name: "Classic SxS 20GA",
-        description: "Traditional side-by-side with hand-engraved receiver and premium finish",
-        category: "side-by-side",
-        gauge: "20",
-        basePrice: "1200.00",
+        name: "PE-601 Over-Under",
+        description: "Premium sporting arms with chrome-lined barrels and hand-finished Turkish walnut stock. Classic over-under configuration for discerning shooters.",
+        category: "over-under",
+        gauge: "12",
+        basePrice: "1,149.00",
         imageUrl: "https://pixabay.com/get/g22860e6eef9895235616107e4f5abf2feb4b5cbd372980d6368f6ae4a9d456e2cf9f0af34bd5694bce6a72461ce87219a2e3dcc81ff915893909a58a5312cd9a_1280.jpg",
         specifications: JSON.stringify({
-          barrels: ["26\"", "28\""],
-          choke: "IC/M",
-          stock: "Select Walnut",
-          weight: "6.2 lbs"
+          action: "Over-Under",
+          barrel: "27.95\"",
+          overall: "45.27\"",
+          capacity: "2 rounds",
+          features: "Selective ejectors, 5 chokes"
         }),
         available: true
       },
       {
         id: 3,
-        name: "Auto Sport 12GA",
-        description: "Gas-operated semi-automatic with synthetic or wood stock options",
+        name: "PE-501 Semi-Auto",
+        description: "Versatile semi-automatic with premium chrome-lined barrels and superior handling. Reliable performance for tactical and sporting applications.",
         category: "semi-auto",
         gauge: "12",
-        basePrice: "675.00",
+        basePrice: "749.00",
         imageUrl: "https://pixabay.com/get/g9aef70e48d98b53d4f747afe54f1129c4b71170dd68a68919ff605a67273f2b3961280bc880b7b2b704fd9ef5dd1c89ca0494dd18c69c38818774ec56b4fa6f4_1280.jpg",
         specifications: JSON.stringify({
-          barrels: ["26\"", "28\"", "30\""],
-          action: "Gas-operated",
-          capacity: "4+1",
-          weight: "7.8 lbs"
+          action: "Semi-automatic",
+          barrel: "18.50\"",
+          overall: "38.18\"",
+          capacity: "5+1 rounds",
+          features: "Chrome-lined barrel"
         }),
         available: true
       },
       {
         id: 4,
-        name: "Competition Pro",
-        description: "Professional-grade competition shotgun with adjustable comb and trigger",
-        category: "over-under",
+        name: "PE-401 Pump Action",
+        description: "Proven market performance with dual action bars and rotary bolt head design. Available in tactical and field configurations.",
+        category: "pump-action",
         gauge: "12",
-        basePrice: "1450.00",
+        basePrice: "629.00",
         imageUrl: "https://pixabay.com/get/g65c4d41ae2cd21e4a8eff39931076c30b690b96aca20bf915e76cad3438943c6043bfb50d0b4d4f09f01e8dffb372550e3f35663d68c163abcc170ece0fc0851_1280.jpg",
         specifications: JSON.stringify({
-          barrels: ["30\"", "32\""],
-          choke: "Extended tubes",
-          features: "Adjustable comb",
-          weight: "8.2 lbs"
+          action: "Pump action",
+          barrel: "24\"-28\"",
+          overall: "40.15\"-45.27\"",
+          capacity: "5+1 rounds",
+          features: "Dual action bars"
         }),
         available: true
       },
       {
         id: 5,
-        name: "Heritage SxS 16GA",
-        description: "Traditional 16-gauge with color case hardened receiver",
-        category: "side-by-side",
-        gauge: "16",
-        basePrice: "975.00",
-        imageUrl: "https://pixabay.com/get/g2123cbda2c587c279541831f2a689eb5cb9b70c72b44be605da5d3f7041f01e6c66794dbd23d59690036d40440548656314d83d437659450042b558f50c7acc7_1280.jpg",
-        specifications: JSON.stringify({
-          barrels: ["26\"", "28\""],
-          finish: "Case hardened",
-          weight: "6.5 lbs",
-          stock: "Grade II Walnut"
-        }),
-        available: true
-      },
-      {
-        id: 6,
-        name: "Tactical Auto 12GA",
-        description: "Tactical configuration with rail system and adjustable stock",
+        name: "PE-301 Semi-Auto",
+        description: "Premium materials and craftsmanship with self-regulating gas system. Multiple barrel configurations for diverse market segments.",
         category: "semi-auto",
         gauge: "12",
-        basePrice: "725.00",
-        imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+        basePrice: "799.00",
+        imageUrl: "https://pixabay.com/get/g2123cbda2c587c279541831f2a689eb5cb9b70c72b44be605da5d3f7041f01e6c66794dbd23d59690036d40440548656314d83d437659450042b558f50c7acc7_1280.jpg",
         specifications: JSON.stringify({
-          barrels: ["18.5\"", "20\""],
-          features: "Rail system",
-          stock: "Adjustable",
-          capacity: "5+1"
-        }),
-        available: true
-      },
-      {
-        id: 7,
-        name: "Youth O/U 20GA",
-        description: "Compact over/under designed for youth and smaller-framed shooters",
-        category: "over-under",
-        gauge: "20",
-        basePrice: "695.00",
-        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-        specifications: JSON.stringify({
-          barrels: ["24\"", "26\""],
-          lop: "13.5\"",
-          weight: "5.8 lbs",
-          stock: "Compact design"
-        }),
-        available: true
-      },
-      {
-        id: 8,
-        name: "Artisan SxS 28GA",
-        description: "Hand-engraved 28-gauge with premium grade Turkish walnut",
-        category: "side-by-side",
-        gauge: "28",
-        basePrice: "1650.00",
-        imageUrl: "https://pixabay.com/get/g2033c06a966d4ccc5999d4f076e16dbe54f9a254940edcb5c575129e10734f138325d5aca5d7fa6c4e33681b0c35bd4f503efab86e3884c907e417b95ff5ab4d_1280.jpg",
-        specifications: JSON.stringify({
-          barrels: ["26\"", "28\""],
-          engraving: "Hand-engraved",
-          grade: "AAA Walnut",
-          weight: "5.5 lbs"
+          action: "Semi-automatic",
+          barrel: "20\"-28\"",
+          overall: "40.15\"-45.27\"",
+          capacity: "5+1 rounds",
+          features: "Self-regulating gas system"
         }),
         available: true
       }

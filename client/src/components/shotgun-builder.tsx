@@ -23,9 +23,9 @@ interface ConfigurationState {
 export default function ShotgunBuilder() {
   const { toast } = useToast();
   const [config, setConfig] = useState<ConfigurationState>({
-    actionType: "over-under",
+    actionType: "bullpup",
     gauge: "12",
-    barrelLength: "28",
+    barrelLength: "18.5",
     stockMaterial: "walnut",
     finish: "blued",
     customBranding: "",
@@ -84,9 +84,10 @@ export default function ShotgunBuilder() {
 
   const configOptions = {
     actionType: [
+      { value: "bullpup", label: "Bullpup" },
       { value: "over-under", label: "Over/Under" },
-      { value: "side-by-side", label: "Side-by-Side" },
-      { value: "semi-auto", label: "Semi-Auto" }
+      { value: "semi-auto", label: "Semi-Auto" },
+      { value: "pump-action", label: "Pump Action" }
     ],
     gauge: [
       { value: "12", label: "12 GA" },
@@ -95,10 +96,11 @@ export default function ShotgunBuilder() {
       { value: "28", label: "28 GA" }
     ],
     barrelLength: [
+      { value: "18.5", label: "18.5\"" },
+      { value: "20", label: "20\"" },
       { value: "24", label: "24\"" },
-      { value: "26", label: "26\"" },
-      { value: "28", label: "28\"" },
-      { value: "30", label: "30\"" }
+      { value: "27.95", label: "27.95\"" },
+      { value: "28", label: "28\"" }
     ],
     stockMaterial: [
       { value: "walnut", label: "Turkish Walnut" },

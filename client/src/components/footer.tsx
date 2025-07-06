@@ -16,10 +16,10 @@ export default function Footer() {
   ];
 
   const services = [
-    "White Label Manufacturing",
-    "Import Services", 
-    "Custom Configuration",
-    "Quality Assurance"
+    "PE-701 Bullpup Solutions",
+    "PE-601 Over-Under Models", 
+    "PE-501 Semi-Auto Systems",
+    "PE-401 Pump Action Designs"
   ];
 
   return (
@@ -29,8 +29,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold mb-4">Upland Arms</h3>
             <p className="text-muted-foreground mb-4">
-              Premium Turkish shotgun manufacturing and white label services. 
-              Building quality firearms for discerning brands worldwide.
+              Our turnkey white label program includes dedicated production capacity, customized QC processes, and seamless importation services. Join dozens of successful brands who have already leveraged our manufacturing capabilities to create profitable, premium firearm offerings.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">

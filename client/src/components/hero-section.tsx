@@ -15,11 +15,10 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Premium Turkish Shotguns
+              White Label Opportunity: Premium Shotguns For Your Brand
             </h1>
             <p className="text-xl mb-8 text-primary-foreground/80">
-              White label manufacturing and import services for premium shotguns. 
-              Build your brand with our expertise in Turkish firearms manufacturing.
+              Elevate your product line with our tactical and sporting shotguns under your own brand name. Our Turkish manufacturing facilities combine state-of-the-art engineering with generations of craftsmanship, offering market-ready firearms with exceptional margins.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button

@@ -5,32 +5,32 @@ export default function ServicesOverview() {
   const services = [
     {
       icon: Factory,
-      title: "White Label Manufacturing",
-      description: "Custom branding and manufacturing of premium Turkish shotguns under your brand name with complete quality assurance.",
+      title: "State-of-the-Art Manufacturing",
+      description: "Our facilities feature the latest CNC machinery alongside skilled craftsmen who hand-finish critical components. Turkish firearms manufacturing combines European quality standards with competitive pricing advantages.",
       features: [
-        "Custom branding & engraving",
-        "Quality control standards",
-        "Flexible minimum orders"
+        "Latest CNC machinery",
+        "Hand-finished components",
+        "European quality standards"
       ]
     },
     {
       icon: Truck,
-      title: "Import Services",
-      description: "Complete import handling including documentation, customs, and compliance with all international regulations.",
+      title: "Diverse Product Range",
+      description: "Our premium shotgun lineup includes tactical bullpup configurations, elegant over-under sporting models, versatile semi-automatic options, and reliable pump-action designs.",
       features: [
-        "Customs documentation",
-        "Compliance management",
-        "Logistics coordination"
+        "Tactical bullpup models",
+        "Premium over-under designs",
+        "Rigorous quality control testing"
       ]
     },
     {
       icon: Wrench,
-      title: "Custom Configuration",
-      description: "Tailored specifications including barrel length, stock materials, finishes, and specialized features.",
+      title: "Complete Branding Solutions",
+      description: "As your white label partner, we offer flexible minimum order quantities, custom engraving services, proprietary finishes, and bespoke packaging solutions.",
       features: [
-        "Barrel customization",
-        "Stock & finish options",
-        "Technical specifications"
+        "Custom engraving services",
+        "Proprietary finishes",
+        "Bespoke packaging solutions"
       ]
     }
   ];

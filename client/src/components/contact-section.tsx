@@ -86,20 +86,20 @@ export default function ContactSection() {
   ];
 
   const features = [
-    "25+ years of Turkish firearms manufacturing experience",
-    "Complete white label and import services",
-    "Flexible minimum order quantities",
-    "Quality control and compliance assurance",
-    "Custom branding and engraving capabilities"
+    "Production capacity exceeding 5,000 units monthly",
+    "Comprehensive marketing support and technical documentation",
+    "Factory-backed warranty service options",
+    "Flexible minimum order quantities (100 units per customization)",
+    "Turnkey solution with proven designs and reliability"
   ];
 
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">White Label Partnership Opportunity</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to start your white label project? Contact our team for personalized assistance
+            Contact our business development team today to request our white label program prospectus and sample partnership agreement. Discover how we can power your branded firearms division with proven products backed by our limited lifetime warranty and dedicated support.
           </p>
         </div>
 
