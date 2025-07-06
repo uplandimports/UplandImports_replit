@@ -87,6 +87,9 @@ export default function ProductCatalog() {
                   src={product.imageUrl}
                   alt={product.name}
                   className="w-full h-48 object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = `https://via.placeholder.com/600x400/374151/ffffff?text=${encodeURIComponent(product.name)}`;
+                  }}
                 />
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-2">{product.name}</h3>

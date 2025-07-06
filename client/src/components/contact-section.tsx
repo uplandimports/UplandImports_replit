@@ -43,8 +43,13 @@ export default function ContactSection() {
 
   const submitInquiry = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await apiRequest("POST", "/api/inquiries", data);
-      return response.json();
+      try {
+        const response = await apiRequest("POST", "/api/inquiries", data);
+        return response.json();
+      } catch (error) {
+        console.error("Contact form submission error:", error);
+        throw error;
+      }
     },
     onSuccess: () => {
       toast({
@@ -54,7 +59,8 @@ export default function ContactSection() {
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/inquiries"] });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error("Contact form mutation error:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",

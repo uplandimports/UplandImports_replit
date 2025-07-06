@@ -37,8 +37,13 @@ export default function ShotgunBuilder() {
 
   const createConfigMutation = useMutation({
     mutationFn: async (configData: InsertConfiguration) => {
-      const response = await apiRequest("POST", "/api/configurations", configData);
-      return response.json();
+      try {
+        const response = await apiRequest("POST", "/api/configurations", configData);
+        return response.json();
+      } catch (error) {
+        console.error("Configuration save error:", error);
+        throw error;
+      }
     },
     onSuccess: () => {
       toast({
@@ -46,7 +51,8 @@ export default function ShotgunBuilder() {
         description: "Your shotgun configuration has been saved successfully.",
       });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error("Configuration mutation error:", error);
       toast({
         title: "Error",
         description: "Failed to save configuration. Please try again.",
@@ -184,6 +190,9 @@ export default function ShotgunBuilder() {
                   src="https://via.placeholder.com/600x300/374151/ffffff?text=CUSTOM+CONFIGURATION+PREVIEW"
                   alt="Configured shotgun preview"
                   className="w-full h-40 object-cover rounded-lg"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://via.placeholder.com/600x300/1e40af/ffffff?text=CONFIGURATION";
+                  }}
                 />
                 <p className="text-center text-sm text-muted-foreground mt-2">
                   Configuration preview will update based on selections
