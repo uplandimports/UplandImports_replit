@@ -111,7 +111,7 @@ export class MemStorage implements IStorage {
         category: "semi-auto",
         gauge: "12",
         basePrice: "799.00",
-        imageUrl: "https://via.placeholder.com/600x400/059669/ffffff?text=PE-301+Semi-Auto",
+        imageUrl: "/uploads/pe-301/301wood.jpeg",
         specifications: JSON.stringify({
           action: "Semi-automatic",
           barrel: "20\"-28\"",
