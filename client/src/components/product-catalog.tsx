@@ -33,7 +33,7 @@ export default function ProductCatalog() {
     try {
       const specs = JSON.parse(specifications);
       return {
-        barrels: Array.isArray(specs.barrels) ? specs.barrels.join(" & ") : specs.barrels || "N/A",
+        barrels: Array.isArray(specs.barrels) ? specs.barrels.join(" & ") : specs.barrels || specs.barrel || "N/A",
         choke: specs.choke || specs.action || "Multi-choke",
         stock: specs.stock || specs.features || "Standard"
       };
