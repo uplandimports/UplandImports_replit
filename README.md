@@ -43,6 +43,12 @@ If you see Node.js version errors:
 - Vercel will automatically use the correct version
 - If manual override needed: Set Node.js version to 18.x in Vercel Project Settings
 
+If Vercel shows source code instead of website:
+- Ensure Framework Preset is set to "Vite" in Vercel project settings
+- Build Command should be "npm run build"
+- Output Directory should be "dist"
+- The vercel.json is configured for proper static site serving
+
 Common deployment issues:
 - Ensure environment variables are set in Vercel dashboard
 - Check that build command completes successfully
