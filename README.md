@@ -35,7 +35,7 @@ A professional B2B website for Upland Imports, specializing in white label Turki
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
 - **API Routes**: Serverless functions in `/api/`
-- **Node Runtime**: `@vercel/node@3.0.7`
+- **Node Runtime**: `@vercel/node@2.15.10`
 
 ### Troubleshooting
 If you see Node.js version errors:
