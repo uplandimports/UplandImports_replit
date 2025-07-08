@@ -1,5 +1,5 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "npm install && npx vite build --logLevel=error",
   "outputDirectory": "dist/public",
   "rewrites": [
     {
