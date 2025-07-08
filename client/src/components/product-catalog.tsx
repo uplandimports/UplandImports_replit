@@ -185,7 +185,7 @@ export default function ProductCatalog() {
                   
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-primary font-semibold">
-                      Starting at {formatPrice(product.basePrice)}
+                      Contact us for pricing
                     </span>
                     <Badge variant="secondary">{product.gauge} GA</Badge>
                   </div>
