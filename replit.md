@@ -1,8 +1,41 @@
-# Upland Imports - B2B Turkish Shotgun Manufacturing Platform
+# replit.md
 
 ## Overview
 
-This is a professional B2B website for Upland Imports, a company specializing in white label Turkish shotgun manufacturing services. The platform serves as a comprehensive business solution for showcasing premium PE-series shotgun products, handling customer inquiries, and facilitating business partnerships through a modern, responsive web interface.
+This is a professional B2B website for Upland Imports, a company specializing in white label Turkish shotgun manufacturing services. The application is built as a modern full-stack web application with React frontend and Express.js backend, featuring product catalogs, contact forms, and email integration for business inquiries.
+
+## Recent Changes
+
+### July 8, 2025 - Final Session
+- Successfully configured and debugged the full application stack
+- Fixed server binding issues and connection problems
+- Resolved TypeScript compilation errors and server startup issues
+- Fixed Vercel deployment image serving issues
+- Updated build configuration to properly copy images to dist directory
+- Configured proper static file serving for production deployment
+- Resolved Vercel API function configuration issues
+- Converted Express routes to Vercel serverless functions
+- Added proper CORS headers and request handling
+- Fixed Vite build timeout issues related to lucide icon processing
+- Optimized build configuration for Vercel deployment
+- Ensured all images are properly copied to public directory
+- Verified all components working: server, API, email, frontend
+- Application fully functional and ready for production deployment
+- Server confirmed running on port 5000 with proper email configuration
+
+### July 8, 2025 - Earlier Session
+- Fixed critical React errors in contact form component
+- Resolved SelectItem value prop issue causing runtime errors
+- Fixed empty string default values in form fields
+- Cleaned up API request error handling
+- Verified server startup and email configuration
+
+### July 8, 2025 - Earlier
+- Fixed TypeScript compilation errors in storage.ts
+- Resolved nullable field handling with proper null coalescing
+- Updated API to correctly use firstName/lastName instead of name
+- Configured Vercel deployment with proper static site serving
+- Ready for production deployment with all TypeScript errors resolved
 
 ## User Preferences
 
@@ -11,119 +44,98 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React 18 with TypeScript for type safety
-- **Styling**: Tailwind CSS with custom dark theme and gold accents
-- **UI Components**: shadcn/ui component library built on Radix UI
-- **State Management**: TanStack Query for server state management
-- **Routing**: Wouter for lightweight client-side routing
-- **Build Tool**: Vite for fast development and optimized production builds
+- **Framework**: React 18 with TypeScript
+- **UI Library**: shadcn/ui components with Radix UI primitives
+- **Styling**: Tailwind CSS with dark theme and gold accents
+- **State Management**: React Query (TanStack Query) for server state
+- **Form Management**: React Hook Form with Zod validation
+- **Routing**: Wouter for client-side routing
+- **Build Tool**: Vite with TypeScript support
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **API Structure**: RESTful API with separate development and production configurations
-- **Development**: Traditional Express server with middleware
-- **Production**: Serverless functions using Vercel's @vercel/node runtime
-- **Email Service**: Nodemailer with Gmail SMTP integration
-- **Data Storage**: In-memory storage with interface for future database integration
+- **Framework**: Express.js with TypeScript
+- **Runtime**: Node.js 18.x
+- **Database**: PostgreSQL with Drizzle ORM
+- **Database Provider**: Neon Database (serverless PostgreSQL)
+- **Email Service**: Nodemailer with Gmail SMTP
+- **API Design**: RESTful endpoints with JSON responses
 
-### Database Schema
-- **ORM**: Drizzle ORM with PostgreSQL dialect (configured but not actively used)
-- **Schema Design**: Four main entities:
-  - Products (shotgun models with specifications)
-  - Configurations (custom build specifications)
-  - Inquiries (customer contact forms)
-  - Quotes (pricing requests and responses)
-- **Current Implementation**: In-memory storage with predefined product data
+### Development vs Production Setup
+- **Development**: Full Express server with Vite middleware
+- **Production**: Serverless functions on Vercel with static file serving
 
 ## Key Components
 
-### Product Management
-- Product catalog with filtering by category (bullpup, over-under, semi-auto, pump-action)
-- Detailed product specifications including gauge options, pricing, and images
-- Image gallery with carousel functionality for product showcase
+### Database Schema
+The application uses four main tables:
+- `products`: Shotgun product catalog with specifications and pricing
+- `configurations`: Custom shotgun configurations with pricing estimates
+- `inquiries`: Customer inquiries and contact form submissions
+- `quotes`: Quote requests and pricing information
 
-### Customer Interaction
-- Enhanced contact forms with multiple inquiry types
-- Model selection dropdowns integrated with product catalog
-- Quantity estimation for bulk orders
-- Custom design comments and special requests handling
+### API Endpoints
+- `GET /api/products`: Retrieve all products or filter by category
+- `GET /api/products/:id`: Get specific product details
+- `POST /api/configurations`: Create custom shotgun configurations
+- `POST /api/inquiries`: Submit customer inquiries
+- `POST /api/quotes`: Request pricing quotes
+
+### Frontend Components
+- **Navigation**: Fixed header with smooth scrolling navigation
+- **Hero Section**: Landing area with call-to-action buttons
+- **Product Catalog**: Filterable product grid with detailed modals
+- **Services Overview**: Company capabilities and manufacturing services
+- **Contact Section**: Enhanced contact form with model selection
+- **Shotgun Builder**: Interactive configuration tool (partially implemented)
 
 ### Email Integration
-- Gmail SMTP configuration for business inquiries
-- Automated email routing to chris@uplandimports.com
-- Form validation and submission handling with user feedback
-
-### Responsive Design
-- Mobile-first approach with breakpoint-aware components
-- Dark theme with professional gold accent colors
-- Smooth scrolling navigation and section anchoring
-- Error handling with user-friendly toast notifications
+- Uses Gmail SMTP for sending business inquiries
+- Requires `GMAIL_USER` and `GMAIL_APP_PASSWORD` environment variables
+- Sends inquiries to chris@uplandimports.com
 
 ## Data Flow
 
-### Product Display Flow
-1. Client requests product data from `/api/products`
-2. Server retrieves from in-memory storage (or future database)
-3. Products rendered in responsive grid with filtering capabilities
-4. User interactions trigger modal dialogs for detailed views
-
-### Inquiry Processing Flow
-1. User submits contact form with validation
-2. Form data processed and validated on server
-3. Email sent via Gmail SMTP to business address
-4. Inquiry stored in memory/database for future reference
-5. User receives confirmation feedback
-
-### Configuration Builder Flow
-1. User customizes shotgun specifications through form interface
-2. Real-time price calculation based on selected options
-3. Configuration saved to storage with unique identifier
-4. Optional email generation for configuration sharing
+1. **Product Display**: Products are fetched from the database and displayed in a responsive grid
+2. **Configuration**: Users can create custom shotgun configurations with real-time pricing
+3. **Inquiry Submission**: Contact forms validate input and send emails while storing in database
+4. **Quote Requests**: Customers can request quotes for specific products or configurations
 
 ## External Dependencies
 
-### Email Service
-- **Provider**: Gmail SMTP
-- **Authentication**: App-specific passwords
-- **Configuration**: Environment variables for credentials
-- **Fallback**: Error handling for email delivery failures
+### Core Dependencies
+- **@neondatabase/serverless**: PostgreSQL database connection
+- **drizzle-orm**: Type-safe database ORM
+- **nodemailer**: Email sending functionality
+- **@radix-ui/***: Accessible UI components
+- **@tanstack/react-query**: Server state management
+- **react-hook-form**: Form handling
+- **zod**: Schema validation
 
-### Recent Changes (July 8, 2025)
-- **Fixed Vercel deployment configuration** - Removed problematic `functions` configuration that was causing "api/index.ts" pattern mismatch errors
-- **Optimized build process** - Updated build command to handle lucide-react icon processing timeouts
-- **Maintained API routing** - Preserved proper serverless function handling for production deployment
-- **Verified email integration** - Confirmed Gmail SMTP configuration working in both development and production environments
-
-### UI Framework
-- **shadcn/ui**: Comprehensive component library
-- **Radix UI**: Accessible primitive components
-- **Tailwind CSS**: Utility-first styling framework
-- **Lucide React**: Icon library for consistent visual elements
-
-### Development Tools
-- **Vite**: Build tool with HMR and TypeScript support
-- **ESBuild**: Fast JavaScript bundler for production
-- **Drizzle Kit**: Database schema management (future use)
+### Development Dependencies
+- **vite**: Build tool and development server
+- **typescript**: Type checking
+- **tailwindcss**: Utility-first CSS framework
+- **esbuild**: Fast JavaScript bundler
 
 ## Deployment Strategy
 
-### Vercel Platform
-- **Framework Detection**: Automatic Vite configuration
-- **Build Process**: `npm run build` with custom output directory
-- **API Routes**: Serverless functions in `/api/` directory
-- **Static Assets**: Served from `/uploads/` and `/images/` paths
-- **Environment Variables**: Secure storage for email credentials
+### Vercel Configuration
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **API Routes**: Serverless functions in `/api/`
+- **Static Files**: Served from `dist/public`
+- **Node Runtime**: `@vercel/node@2.15.10`
 
-### Production Configuration
-- **Node.js Version**: 18.x (specified in .nvmrc)
-- **Runtime**: @vercel/node@2.15.10 for serverless functions
-- **Build Output**: `dist/public` directory for static assets
-- **Routing**: Custom rewrites for SPA and API handling
+### Environment Variables
+- `DATABASE_URL`: PostgreSQL connection string
+- `GMAIL_USER`: Gmail account for sending emails
+- `GMAIL_APP_PASSWORD`: Gmail app password for SMTP
 
-### Performance Optimizations
-- **Static Asset Caching**: Long-term caching headers for uploads
-- **Image Optimization**: Placeholder images with error handling
-- **Code Splitting**: Vite's automatic bundle optimization
-- **TypeScript**: Full-stack type safety for reduced runtime errors
+### File Structure
+- `client/`: React frontend application
+- `server/`: Express.js backend (development)
+- `api/`: Serverless functions (production)
+- `shared/`: Shared TypeScript types and schemas
+- `uploads/`: Static file storage directory
 
-The application is designed to be easily extensible, with clear separation of concerns and a modular component structure that supports future enhancements like database integration, user authentication, and advanced product management features.
+The application follows a modern full-stack architecture with clear separation between client and server code, comprehensive type safety, and deployment flexibility for both development and production environments.

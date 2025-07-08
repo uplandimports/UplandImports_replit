@@ -28,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     // Products routes
-    if (method === 'GET' && (url === '/api/products' || url.startsWith('/api/products?'))) {
+    if (method === 'GET' && url.match(/^\/api\/products$/)) {
       const category = req.query.category as string;
       const products = category 
         ? await storage.getProductsByCategory(category)
@@ -46,7 +46,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Configuration routes
-    if (method === 'POST' && url === '/api/configurations') {
+    if (method === 'POST' && url.match(/^\/api\/configurations$/)) {
       const validation = insertConfigurationSchema.safeParse(req.body);
       if (!validation.success) {
         return res.status(400).json({ message: "Invalid configuration data" });
@@ -66,7 +66,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Inquiry routes
-    if (method === 'POST' && url === '/api/inquiries') {
+    if (method === 'POST' && url.match(/^\/api\/inquiries$/)) {
       const validation = insertInquirySchema.safeParse(req.body);
       if (!validation.success) {
         return res.status(400).json({ message: "Invalid inquiry data" });
@@ -103,26 +103,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.json(inquiry);
     }
     
-    if (method === 'GET' && url === '/api/inquiries') {
+    if (method === 'GET' && url.match(/^\/api\/inquiries$/)) {
       const inquiries = await storage.getInquiries();
       return res.json(inquiries);
     }
 
-    // If no route matched, return 404 with debugging info
-    console.log(`Unmatched route: ${method} ${url}`);
-    res.status(404).json({ 
-      message: "Route not found", 
-      method, 
-      url,
-      availableRoutes: [
-        'GET /api/products',
-        'GET /api/products/:id',
-        'POST /api/configurations',
-        'GET /api/configurations/:id',
-        'POST /api/inquiries',
-        'GET /api/inquiries'
-      ]
-    });
+    // Default 404
+    res.status(404).json({ message: 'Not Found' });
     
   } catch (error) {
     console.error('API Error:', error);

@@ -1,6 +1,7 @@
 {
-  "buildCommand": "npm install && npx vite build --logLevel=error",
+  "buildCommand": "vite build",
   "outputDirectory": "dist/public",
+  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/api/(.*)",
