@@ -7,12 +7,10 @@ import { insertConfigurationSchema, insertInquirySchema } from "@shared/schema";
 export async function registerRoutes(app: Express): Promise<Server> {
   // Email transporter setup
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: false,
+    service: 'gmail',
     auth: {
-      user: process.env.SMTP_USER || process.env.EMAIL_USER,
-      pass: process.env.SMTP_PASS || process.env.EMAIL_PASS,
+      user: process.env.GMAIL_USER || process.env.EMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_PASS,
     },
   });
 
@@ -74,8 +72,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send email notification
       const mailOptions = {
-        from: process.env.SMTP_USER || process.env.EMAIL_USER,
-        to: process.env.CONTACT_EMAIL || "info@uplandarms.com",
+        from: process.env.GMAIL_USER || process.env.EMAIL_USER,
+        to: process.env.CONTACT_EMAIL || "chris@uplandimports.com",
         subject: `New ${inquiry.inquiryType} Inquiry from ${inquiry.company || inquiry.firstName + ' ' + inquiry.lastName}`,
         html: `
           <h2>New Business Inquiry</h2>

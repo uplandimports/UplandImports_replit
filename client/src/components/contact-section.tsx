@@ -44,7 +44,7 @@ export default function ContactSection() {
   const submitInquiry = useMutation({
     mutationFn: async (data: FormData) => {
       try {
-        const response = await apiRequest("/api/inquiries", "POST", data);
+        const response = await apiRequest("POST", "/api/inquiries", data);
         return response.json();
       } catch (error) {
         console.error("Contact form submission error:", error);
