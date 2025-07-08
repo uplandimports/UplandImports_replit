@@ -53,6 +53,8 @@ Common deployment issues:
 - Ensure environment variables are set in Vercel dashboard
 - Check that build command completes successfully
 - Verify API functions are properly configured
+- TypeScript compilation errors have been resolved
+- All nullable fields properly handle undefined values
 
 ### Local Development
 

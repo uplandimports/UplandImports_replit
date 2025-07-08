@@ -1,8 +1,17 @@
-# replit.md - Upland Imports Turkish Shotgun Manufacturing Platform
+# replit.md
 
 ## Overview
 
-This is a professional B2B website for Upland Imports, specializing in white label Turkish shotgun manufacturing services. The platform serves as a comprehensive showcase for the PE-series shotgun lineup with integrated contact forms, email functionality, and a modern responsive design.
+This is a professional B2B website for Upland Imports, a company specializing in white label Turkish shotgun manufacturing services. The application is built as a modern full-stack web application with React frontend and Express.js backend, featuring product catalogs, contact forms, and email integration for business inquiries.
+
+## Recent Changes
+
+### July 8, 2025
+- Fixed TypeScript compilation errors in storage.ts
+- Resolved nullable field handling with proper null coalescing
+- Updated API to correctly use firstName/lastName instead of name
+- Configured Vercel deployment with proper static site serving
+- Ready for production deployment with all TypeScript errors resolved
 
 ## User Preferences
 
@@ -11,121 +20,98 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React with TypeScript for type safety
+- **Framework**: React 18 with TypeScript
+- **UI Library**: shadcn/ui components with Radix UI primitives
 - **Styling**: Tailwind CSS with dark theme and gold accents
-- **UI Components**: shadcn/ui component library with Radix UI primitives
-- **State Management**: React Query (TanStack Query) for server state management
-- **Routing**: Wouter for lightweight client-side routing
-- **Build Tool**: Vite for development and production builds
+- **State Management**: React Query (TanStack Query) for server state
+- **Form Management**: React Hook Form with Zod validation
+- **Routing**: Wouter for client-side routing
+- **Build Tool**: Vite with TypeScript support
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **API Design**: RESTful API with JSON responses
-- **Email Service**: Gmail SMTP integration using Nodemailer
-- **File Serving**: Static file serving for uploads and images
-- **Error Handling**: Centralized error handling middleware
+- **Framework**: Express.js with TypeScript
+- **Runtime**: Node.js 18.x
+- **Database**: PostgreSQL with Drizzle ORM
+- **Database Provider**: Neon Database (serverless PostgreSQL)
+- **Email Service**: Nodemailer with Gmail SMTP
+- **API Design**: RESTful endpoints with JSON responses
 
-### Database Architecture
-- **ORM**: Drizzle ORM for type-safe database operations
-- **Database**: PostgreSQL (configured for Neon Database)
-- **Schema**: Structured tables for products, configurations, inquiries, and quotes
-- **Storage Strategy**: In-memory storage implementation for development with database fallback
+### Development vs Production Setup
+- **Development**: Full Express server with Vite middleware
+- **Production**: Serverless functions on Vercel with static file serving
 
 ## Key Components
 
-### Product Management
-- **Product Catalog**: Complete PE-series shotgun lineup with filtering capabilities
-- **Product Details**: Specifications, pricing, and image galleries
-- **Categories**: Organized by action type (bullpup, over-under, semi-auto, pump-action)
-- **Pricing**: Dynamic pricing based on configurations and customizations
+### Database Schema
+The application uses four main tables:
+- `products`: Shotgun product catalog with specifications and pricing
+- `configurations`: Custom shotgun configurations with pricing estimates
+- `inquiries`: Customer inquiries and contact form submissions
+- `quotes`: Quote requests and pricing information
 
-### Contact & Inquiry System
-- **Enhanced Forms**: Model selection, quantity estimation, and design comments
-- **Email Integration**: Automated email sending to chris@uplandimports.com
-- **Form Validation**: Zod schema validation with React Hook Form
-- **Inquiry Types**: Multiple inquiry categories (pricing, general, technical)
+### API Endpoints
+- `GET /api/products`: Retrieve all products or filter by category
+- `GET /api/products/:id`: Get specific product details
+- `POST /api/configurations`: Create custom shotgun configurations
+- `POST /api/inquiries`: Submit customer inquiries
+- `POST /api/quotes`: Request pricing quotes
 
-### Configuration Builder
-- **Customization Options**: Action type, gauge, barrel length, stock material, finish
-- **Real-time Pricing**: Dynamic price calculation based on selected options
-- **Custom Branding**: Support for client branding and special requests
+### Frontend Components
+- **Navigation**: Fixed header with smooth scrolling navigation
+- **Hero Section**: Landing area with call-to-action buttons
+- **Product Catalog**: Filterable product grid with detailed modals
+- **Services Overview**: Company capabilities and manufacturing services
+- **Contact Section**: Enhanced contact form with model selection
+- **Shotgun Builder**: Interactive configuration tool (partially implemented)
 
-### UI/UX Components
-- **Responsive Design**: Mobile-first approach with adaptive layouts
-- **Dark Theme**: Professional dark theme with gold accent colors
-- **Navigation**: Smooth scrolling navigation with mobile hamburger menu
-- **Modals & Dialogs**: Product details, configuration builder, and contact forms
-- **Toast Notifications**: User feedback for form submissions and errors
+### Email Integration
+- Uses Gmail SMTP for sending business inquiries
+- Requires `GMAIL_USER` and `GMAIL_APP_PASSWORD` environment variables
+- Sends inquiries to chris@uplandimports.com
 
 ## Data Flow
 
-### Product Display Flow
-1. Frontend requests products from `/api/products`
-2. Backend retrieves products from storage (memory or database)
-3. Products filtered by category if specified
-4. Frontend renders product cards with images and basic info
-5. Detail modal triggered on product interaction
-
-### Contact Form Flow
-1. User fills out contact form with validation
-2. Form data validated using Zod schemas
-3. POST request to `/api/inquiries` with form data
-4. Backend processes inquiry and sends email via Gmail SMTP
-5. Success/error feedback displayed to user
-6. Form reset on successful submission
-
-### Configuration Flow
-1. User selects base product and customization options
-2. Real-time price calculation based on selections
-3. Configuration saved to `/api/configurations`
-4. Optional quote request generates inquiry with configuration reference
+1. **Product Display**: Products are fetched from the database and displayed in a responsive grid
+2. **Configuration**: Users can create custom shotgun configurations with real-time pricing
+3. **Inquiry Submission**: Contact forms validate input and send emails while storing in database
+4. **Quote Requests**: Customers can request quotes for specific products or configurations
 
 ## External Dependencies
 
-### Email Service
-- **Gmail SMTP**: Business email integration
-- **Environment Variables**: `GMAIL_USER` and `GMAIL_APP_PASSWORD`
-- **Nodemailer**: Email sending library with Gmail transport
+### Core Dependencies
+- **@neondatabase/serverless**: PostgreSQL database connection
+- **drizzle-orm**: Type-safe database ORM
+- **nodemailer**: Email sending functionality
+- **@radix-ui/***: Accessible UI components
+- **@tanstack/react-query**: Server state management
+- **react-hook-form**: Form handling
+- **zod**: Schema validation
 
-### UI Libraries
-- **Radix UI**: Accessible component primitives
-- **shadcn/ui**: Pre-built component library
-- **Tailwind CSS**: Utility-first CSS framework
-- **Lucide React**: Icon library
-
-### Development Tools
-- **TypeScript**: Static type checking
-- **ESBuild**: Fast bundling for server-side code
-- **Vite**: Frontend build tool and development server
-- **React Query**: Data fetching and caching
+### Development Dependencies
+- **vite**: Build tool and development server
+- **typescript**: Type checking
+- **tailwindcss**: Utility-first CSS framework
+- **esbuild**: Fast JavaScript bundler
 
 ## Deployment Strategy
 
-### Vercel Deployment
-- **Platform**: Vercel for both frontend and serverless functions
-- **Build Process**: Automated builds from GitHub integration
-- **Environment**: Production environment variables configured in Vercel dashboard
-- **API Routes**: Serverless functions in `/api/` directory
-- **Static Assets**: Served from `/dist/public/` directory
-
-### Configuration Files
-- **vercel.json**: Deployment configuration with Node.js runtime
-- **package.json**: Build scripts and dependencies
-- **tsconfig.json**: TypeScript configuration for full-stack development
-- **vite.config.ts**: Frontend build configuration
+### Vercel Configuration
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **API Routes**: Serverless functions in `/api/`
+- **Static Files**: Served from `dist/public`
+- **Node Runtime**: `@vercel/node@2.15.10`
 
 ### Environment Variables
-- `GMAIL_USER`: Gmail account for SMTP authentication
-- `GMAIL_APP_PASSWORD`: Gmail app-specific password
-- `DATABASE_URL`: PostgreSQL connection string (optional)
-- `NODE_ENV`: Environment mode (development/production)
+- `DATABASE_URL`: PostgreSQL connection string
+- `GMAIL_USER`: Gmail account for sending emails
+- `GMAIL_APP_PASSWORD`: Gmail app password for SMTP
 
 ### File Structure
-- `/client/`: Frontend React application
-- `/server/`: Backend Express.js application
-- `/shared/`: Shared types and schemas
-- `/api/`: Vercel serverless functions
-- `/uploads/`: Static file storage for images
-- `/dist/`: Production build output
+- `client/`: React frontend application
+- `server/`: Express.js backend (development)
+- `api/`: Serverless functions (production)
+- `shared/`: Shared TypeScript types and schemas
+- `uploads/`: Static file storage directory
 
-The application uses a monorepo structure with clear separation between frontend and backend code, enabling easy maintenance and deployment to Vercel's serverless platform.
+The application follows a modern full-stack architecture with clear separation between client and server code, comprehensive type safety, and deployment flexibility for both development and production environments.
