@@ -1,117 +1,92 @@
-# replit.md
+# Upland Imports - Turkish Shotgun Manufacturing Platform
 
 ## Overview
 
-This is a professional B2B website for Upland Imports, a company specializing in white label Turkish shotgun manufacturing services. The application is built as a modern full-stack web application with React frontend and Express.js backend, featuring product catalogs, contact forms, and email integration for business inquiries.
+Upland Imports is a full-stack web application for a Turkish shotgun manufacturing company that specializes in white label services and custom firearm configurations. The platform serves as both a product catalog and a business inquiry system, allowing potential clients to browse premium shotgun models, configure custom specifications, and submit business inquiries for white label manufacturing services.
 
-## Recent Changes
+## System Architecture
 
-### July 8, 2025
-- Fixed TypeScript compilation errors in storage.ts
-- Resolved nullable field handling with proper null coalescing
-- Updated API to correctly use firstName/lastName instead of name
-- Configured Vercel deployment with proper static site serving
-- Ready for production deployment with all TypeScript errors resolved
+The application follows a modern full-stack architecture with clear separation between frontend and backend:
+
+- **Frontend**: React-based SPA with TypeScript, utilizing Vite for development and build processes
+- **Backend**: Express.js REST API server with TypeScript
+- **Database**: PostgreSQL with Drizzle ORM for data persistence
+- **UI Framework**: Shadcn/ui components with Radix UI primitives and Tailwind CSS
+- **State Management**: TanStack Query for server state management
+- **Email Service**: Nodemailer for handling contact form submissions
+
+## Key Components
+
+### Frontend Architecture
+- **Framework**: React 18 with TypeScript
+- **Routing**: Wouter for client-side routing
+- **UI Components**: Shadcn/ui component library built on Radix UI
+- **Styling**: Tailwind CSS with CSS variables for theming
+- **Forms**: React Hook Form with Zod validation
+- **HTTP Client**: TanStack Query with custom API request utilities
+
+### Backend Architecture
+- **Server**: Express.js with TypeScript
+- **Database**: PostgreSQL with Drizzle ORM
+- **Validation**: Zod schemas for request validation
+- **Email**: Nodemailer for SMTP email sending
+- **Storage**: In-memory storage with interface for future database integration
+
+### Database Schema
+- **Products**: Core shotgun models with specifications, pricing, and categories
+- **Configurations**: Custom shotgun configurations with pricing calculations
+- **Inquiries**: Business inquiry submissions with contact information
+
+## Data Flow
+
+1. **Product Catalog**: Frontend fetches product data from `/api/products` endpoint
+2. **Custom Configuration**: Users configure shotguns through the builder, which calculates pricing and saves configurations via `/api/configurations`
+3. **Business Inquiries**: Contact forms submit to `/api/inquiries` with email notifications
+4. **Real-time Updates**: TanStack Query manages cache invalidation and optimistic updates
+
+## External Dependencies
+
+### Core Dependencies
+- **Database**: Neon serverless PostgreSQL
+- **Email Service**: SMTP provider (Gmail by default)
+- **UI Components**: Radix UI primitives for accessibility
+- **Development**: Vite with React plugin and Replit integration
+
+### Third-party Services
+- **Image Hosting**: External URLs for product images (Unsplash, Pixabay)
+- **Email Transport**: Configurable SMTP service
+- **Development Tools**: Replit-specific plugins for development environment
+
+## Deployment Strategy
+
+The application is designed for deployment on Replit with the following structure:
+
+- **Development**: `npm run dev` starts both Vite dev server and Express API
+- **Build**: `npm run build` creates optimized production bundles
+- **Production**: `npm start` serves the built application
+- **Database**: Migrations handled via `npm run db:push` using Drizzle Kit
+
+### Environment Configuration
+- `DATABASE_URL`: PostgreSQL connection string
+- `SMTP_HOST`, `SMTP_PORT`: Email server configuration
+- `SMTP_USER`, `SMTP_PASS`: Email authentication credentials
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## System Architecture
+## Recent Changes
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **UI Library**: shadcn/ui components with Radix UI primitives
-- **Styling**: Tailwind CSS with dark theme and gold accents
-- **State Management**: React Query (TanStack Query) for server state
-- **Form Management**: React Hook Form with Zod validation
-- **Routing**: Wouter for client-side routing
-- **Build Tool**: Vite with TypeScript support
+- January 07, 2025: Updated website with authentic PowerPoint content
+  - Replaced sample products with real PE-series models (PE-701, PE-601, PE-501, PE-401, PE-301)
+  - Updated hero section with "White Label Opportunity" messaging
+  - Added bullpup and pump-action categories to product filters
+  - Updated service descriptions with authentic manufacturing details
+  - Integrated real product specifications and pricing from presentation
+  - Updated contact section with partnership opportunity messaging
 
-### Backend Architecture
-- **Framework**: Express.js with TypeScript
-- **Runtime**: Node.js 18.x
-- **Database**: PostgreSQL with Drizzle ORM
-- **Database Provider**: Neon Database (serverless PostgreSQL)
-- **Email Service**: Nodemailer with Gmail SMTP
-- **API Design**: RESTful endpoints with JSON responses
+## Changelog
 
-### Development vs Production Setup
-- **Development**: Full Express server with Vite middleware
-- **Production**: Serverless functions on Vercel with static file serving
-
-## Key Components
-
-### Database Schema
-The application uses four main tables:
-- `products`: Shotgun product catalog with specifications and pricing
-- `configurations`: Custom shotgun configurations with pricing estimates
-- `inquiries`: Customer inquiries and contact form submissions
-- `quotes`: Quote requests and pricing information
-
-### API Endpoints
-- `GET /api/products`: Retrieve all products or filter by category
-- `GET /api/products/:id`: Get specific product details
-- `POST /api/configurations`: Create custom shotgun configurations
-- `POST /api/inquiries`: Submit customer inquiries
-- `POST /api/quotes`: Request pricing quotes
-
-### Frontend Components
-- **Navigation**: Fixed header with smooth scrolling navigation
-- **Hero Section**: Landing area with call-to-action buttons
-- **Product Catalog**: Filterable product grid with detailed modals
-- **Services Overview**: Company capabilities and manufacturing services
-- **Contact Section**: Enhanced contact form with model selection
-- **Shotgun Builder**: Interactive configuration tool (partially implemented)
-
-### Email Integration
-- Uses Gmail SMTP for sending business inquiries
-- Requires `GMAIL_USER` and `GMAIL_APP_PASSWORD` environment variables
-- Sends inquiries to chris@uplandimports.com
-
-## Data Flow
-
-1. **Product Display**: Products are fetched from the database and displayed in a responsive grid
-2. **Configuration**: Users can create custom shotgun configurations with real-time pricing
-3. **Inquiry Submission**: Contact forms validate input and send emails while storing in database
-4. **Quote Requests**: Customers can request quotes for specific products or configurations
-
-## External Dependencies
-
-### Core Dependencies
-- **@neondatabase/serverless**: PostgreSQL database connection
-- **drizzle-orm**: Type-safe database ORM
-- **nodemailer**: Email sending functionality
-- **@radix-ui/***: Accessible UI components
-- **@tanstack/react-query**: Server state management
-- **react-hook-form**: Form handling
-- **zod**: Schema validation
-
-### Development Dependencies
-- **vite**: Build tool and development server
-- **typescript**: Type checking
-- **tailwindcss**: Utility-first CSS framework
-- **esbuild**: Fast JavaScript bundler
-
-## Deployment Strategy
-
-### Vercel Configuration
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- **API Routes**: Serverless functions in `/api/`
-- **Static Files**: Served from `dist/public`
-- **Node Runtime**: `@vercel/node@2.15.10`
-
-### Environment Variables
-- `DATABASE_URL`: PostgreSQL connection string
-- `GMAIL_USER`: Gmail account for sending emails
-- `GMAIL_APP_PASSWORD`: Gmail app password for SMTP
-
-### File Structure
-- `client/`: React frontend application
-- `server/`: Express.js backend (development)
-- `api/`: Serverless functions (production)
-- `shared/`: Shared TypeScript types and schemas
-- `uploads/`: Static file storage directory
-
-The application follows a modern full-stack architecture with clear separation between client and server code, comprehensive type safety, and deployment flexibility for both development and production environments.
+Changelog:
+- July 01, 2025. Initial setup
+- January 07, 2025. Integrated authentic PowerPoint content and PE-series product lineup
