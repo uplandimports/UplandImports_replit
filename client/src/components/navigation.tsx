@@ -26,7 +26,8 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-primary">Upland Arms</h1>
+              <h1 className="text-2xl font-bold text-primary">Upland Imports
+</h1>
               <p className="text-xs text-muted-foreground">Premium Shotgun White Labels</p>
             </div>
           </div>
