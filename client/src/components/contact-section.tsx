@@ -44,7 +44,7 @@ export default function ContactSection() {
   const submitInquiry = useMutation({
     mutationFn: async (data: FormData) => {
       try {
-        const response = await apiRequest("POST", "/api/inquiries", data);
+        const response = await apiRequest("/api/inquiries", "POST", data);
         return response.json();
       } catch (error) {
         console.error("Contact form submission error:", error);
@@ -77,7 +77,7 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      details: ["info@uplandarms.com", "sales@uplandarms.com"]
+      details: ["chris@uplandarms.com", "info@uplandarms.com", "sales@uplandarms.com"]
     },
     {
       icon: Phone,

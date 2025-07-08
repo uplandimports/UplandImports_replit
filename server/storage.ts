@@ -104,7 +104,7 @@ export class MemStorage implements IStorage {
         category: "pump-action",
         gauge: "12",
         basePrice: "629.00",
-        imageUrl: "https://via.placeholder.com/600x400/2D2D2D/FFD700?text=PE-401+Pump+Action",
+        imageUrl: "/uploads/pe-401/pe401pump.jpeg",
         specifications: JSON.stringify({
           action: "Pump action",
           barrel: "24\"-28\"",

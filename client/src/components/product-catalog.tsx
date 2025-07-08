@@ -130,6 +130,15 @@ export default function ProductCatalog() {
       ];
     }
     
+    // PE-401 has specific images in uploads folder
+    if (product.name === "PE-401 Pump Action") {
+      return [
+        "/uploads/pe-401/pe401pump.jpeg",
+        "/uploads/pe-401/pe401pumo.jpeg",
+        "/uploads/pe-401/pe401wood.jpeg"
+      ];
+    }
+    
     // For other products, use main image and generate placeholder paths
     const galleryImages = [
       product.imageUrl, // Main product image
