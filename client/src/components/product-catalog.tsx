@@ -115,6 +115,16 @@ export default function ProductCatalog() {
       ];
     }
     
+    // PE-501 has specific images in uploads folder
+    if (product.name === "PE-501 Semi-Auto") {
+      return [
+        "/uploads/pe-501/pe501black.jpeg",
+        "/uploads/pe-501/pe501camo.jpeg",
+        "/uploads/pe-501/pe501grey.jpeg",
+        "/uploads/pe-501/pe501red.jpeg"
+      ];
+    }
+    
     // For other products, use main image and generate placeholder paths
     const galleryImages = [
       product.imageUrl, // Main product image
