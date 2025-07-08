@@ -3,14 +3,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { Info, Loader2, Eye, Star, Shield, Zap, Target } from "lucide-react";
+import { Info, Loader2, Eye, Star, Shield, Zap, Target, ChevronLeft, ChevronRight } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@shared/schema";
 
 export default function ProductCatalog() {
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"],
@@ -39,6 +40,19 @@ export default function ProductCatalog() {
     } catch {
       return { barrels: "N/A", choke: "N/A", stock: "N/A" };
     }
+  };
+
+  const getProductGallery = (product: Product) => {
+    // Generate multiple product images for gallery
+    const galleryImages = [
+      product.imageUrl, // Main product image
+      `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-1.jpg`,
+      `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-2.jpg`,
+      `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-3.jpg`,
+      `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-4.jpg`,
+    ];
+    
+    return galleryImages.filter(Boolean);
   };
 
   if (isLoading) {
@@ -82,6 +96,7 @@ export default function ProductCatalog() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredProducts.map((product) => {
             const specs = getSpecificationDisplay(product.specifications);
+            const galleryImages = getProductGallery(product);
             
             return (
               <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-shadow">
@@ -126,30 +141,87 @@ export default function ProductCatalog() {
                         View Details
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-bold text-foreground">
                           {product.name}
                         </DialogTitle>
+                        <DialogDescription className="text-muted-foreground">
+                          Detailed specifications and gallery for {product.name}
+                        </DialogDescription>
                       </DialogHeader>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                        {/* Product Image */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
+                        {/* Product Gallery */}
                         <div className="space-y-4">
-                          <img
-                            src={product.imageUrl}
-                            alt={product.name}
-                            className="w-full h-64 object-cover rounded-lg"
-                            onError={(e) => {
-                              e.currentTarget.src = `https://via.placeholder.com/600x400/374151/FFD700?text=${encodeURIComponent(product.name)}`;
-                            }}
-                          />
+                          {/* Main Image */}
+                          <div className="relative">
+                            <img
+                              src={galleryImages[selectedImageIndex]}
+                              alt={`${product.name} - Image ${selectedImageIndex + 1}`}
+                              className="w-full h-80 object-cover rounded-lg"
+                              onError={(e) => {
+                                e.currentTarget.src = `https://via.placeholder.com/600x400/374151/FFD700?text=${encodeURIComponent(product.name)}`;
+                              }}
+                            />
+                            {galleryImages.length > 1 && (
+                              <>
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/80 hover:bg-background"
+                                  onClick={() => setSelectedImageIndex(selectedImageIndex === 0 ? galleryImages.length - 1 : selectedImageIndex - 1)}
+                                >
+                                  <ChevronLeft className="h-4 w-4" />
+                                </Button>
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/80 hover:bg-background"
+                                  onClick={() => setSelectedImageIndex(selectedImageIndex === galleryImages.length - 1 ? 0 : selectedImageIndex + 1)}
+                                >
+                                  <ChevronRight className="h-4 w-4" />
+                                </Button>
+                              </>
+                            )}
+                          </div>
+                          
+                          {/* Image Thumbnails */}
+                          {galleryImages.length > 1 && (
+                            <div className="flex gap-2 overflow-x-auto">
+                              {galleryImages.map((image, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => setSelectedImageIndex(index)}
+                                  className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all ${
+                                    selectedImageIndex === index 
+                                      ? 'border-primary' 
+                                      : 'border-muted hover:border-primary/50'
+                                  }`}
+                                >
+                                  <img
+                                    src={image}
+                                    alt={`${product.name} thumbnail ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      e.currentTarget.src = `https://via.placeholder.com/200x200/374151/FFD700?text=${index + 1}`;
+                                    }}
+                                  />
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                          
+                          {/* Product Badges */}
                           <div className="flex flex-wrap gap-2">
                             <Badge variant="secondary" className="text-sm">
                               {product.gauge} GA
                             </Badge>
                             <Badge variant="outline" className="text-sm">
                               {product.category}
+                            </Badge>
+                            <Badge variant="outline" className="text-sm">
+                              {galleryImages.length} Photos
                             </Badge>
                           </div>
                         </div>
