@@ -37,6 +37,9 @@ export const inquiries = pgTable("inquiries", {
   inquiryType: text("inquiry_type").notNull(),
   message: text("message").notNull(),
   configurationId: integer("configuration_id").references(() => configurations.id),
+  selectedModel: text("selected_model"),
+  quantity: integer("quantity"),
+  designComments: text("design_comments"),
   createdAt: text("created_at").notNull(),
 });
 

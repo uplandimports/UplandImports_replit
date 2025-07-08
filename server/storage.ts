@@ -187,6 +187,9 @@ export class MemStorage implements IStorage {
       inquiryType: insertInquiry.inquiryType,
       message: insertInquiry.message,
       configurationId: insertInquiry.configurationId ?? null,
+      selectedModel: insertInquiry.selectedModel ?? null,
+      quantity: insertInquiry.quantity ?? null,
+      designComments: insertInquiry.designComments ?? null,
       createdAt: new Date().toISOString()
     };
     this.inquiries.set(id, inquiry);

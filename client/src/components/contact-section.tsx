@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,14 +12,17 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Mail, Phone, Clock, CheckCircle, Send } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { insertInquirySchema } from "@shared/schema";
+import { insertInquirySchema, Product } from "@shared/schema";
 
 const formSchema = insertInquirySchema.extend({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
   inquiryType: z.string().min(1, "Please select an inquiry type"),
-  message: z.string().min(10, "Message must be at least 10 characters")
+  message: z.string().min(10, "Message must be at least 10 characters"),
+  selectedModel: z.string().optional(),
+  quantity: z.number().min(1, "Quantity must be at least 1").optional(),
+  designComments: z.string().optional()
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -27,6 +30,11 @@ type FormData = z.infer<typeof formSchema>;
 export default function ContactSection() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  
+  // Fetch products for model selection
+  const { data: products } = useQuery<Product[]>({
+    queryKey: ["/api/products"],
+  });
   
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -38,6 +46,9 @@ export default function ContactSection() {
       phone: "",
       inquiryType: "",
       message: "",
+      selectedModel: "",
+      quantity: undefined,
+      designComments: "",
     },
   });
 
