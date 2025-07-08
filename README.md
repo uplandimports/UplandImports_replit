@@ -38,10 +38,15 @@ A professional B2B website for Upland Imports, specializing in white label Turki
 - **Node Runtime**: `@vercel/node@3.0.7`
 
 ### Troubleshooting
-If you see "Function Runtimes must have a valid version" error:
-- The vercel.json is configured with the correct runtime version
-- Ensure you're using the latest Vercel CLI
-- Check that all environment variables are set in Vercel dashboard
+If you see Node.js version errors:
+- Project uses Node.js 18.x (specified in .nvmrc and vercel.json)
+- Vercel will automatically use the correct version
+- If manual override needed: Set Node.js version to 18.x in Vercel Project Settings
+
+Common deployment issues:
+- Ensure environment variables are set in Vercel dashboard
+- Check that build command completes successfully
+- Verify API functions are properly configured
 
 ### Local Development
 
