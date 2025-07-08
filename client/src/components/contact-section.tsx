@@ -46,7 +46,7 @@ export default function ContactSection() {
       phone: "",
       inquiryType: "",
       message: "",
-      selectedModel: undefined,
+      selectedModel: "",
       quantity: undefined,
       designComments: "",
     },
@@ -54,8 +54,13 @@ export default function ContactSection() {
 
   const submitInquiry = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await apiRequest("POST", "/api/inquiries", data);
-      return response.json();
+      try {
+        const response = await apiRequest("POST", "/api/inquiries", data);
+        return response.json();
+      } catch (error) {
+        console.error("Contact form submission error:", error);
+        throw error;
+      }
     },
     onSuccess: () => {
       toast({
@@ -233,8 +238,8 @@ export default function ContactSection() {
                               <SelectContent>
                                 <SelectItem value="none">No specific model</SelectItem>
                                 {products?.map((product) => (
-                                  <SelectItem key={product.id} value={product.name || `product-${product.id}`}>
-                                    {product.name || `Product ${product.id}`}
+                                  <SelectItem key={product.id} value={product.name}>
+                                    {product.name}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -336,9 +341,7 @@ export default function ContactSection() {
                       <div>
                         <h4 className="font-semibold text-foreground">{info.title}</h4>
                         {info.details.map((detail, index) => (
-                          <p key={index} className="text-muted-foreground text-sm">
-                            {detail}
-                          </p>
+                          index === 0 ? null : null
                         ))}
                       </div>
                     </div>
