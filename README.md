@@ -35,6 +35,13 @@ A professional B2B website for Upland Imports, specializing in white label Turki
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
 - **API Routes**: Serverless functions in `/api/`
+- **Node Runtime**: `@vercel/node@3.0.7`
+
+### Troubleshooting
+If you see "Function Runtimes must have a valid version" error:
+- The vercel.json is configured with the correct runtime version
+- Ensure you're using the latest Vercel CLI
+- Check that all environment variables are set in Vercel dashboard
 
 ### Local Development
 
