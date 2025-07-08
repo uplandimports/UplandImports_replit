@@ -1,20 +1,75 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Info, Loader2, Eye, Star, Shield, Zap, Target, ChevronLeft, ChevronRight } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import type { Product } from "@shared/schema";
 
 export default function ProductCatalog() {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+  const [showPricingForm, setShowPricingForm] = useState<boolean>(false);
+  const [pricingFormData, setPricingFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: "",
+    productName: ""
+  });
+  
+  const { toast } = useToast();
 
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"],
+  });
+
+  const pricingMutation = useMutation({
+    mutationFn: async (data: any) => {
+      return await apiRequest("/api/inquiries", {
+        method: "POST",
+        body: JSON.stringify({
+          firstName: data.name.split(" ")[0] || data.name,
+          lastName: data.name.split(" ").slice(1).join(" ") || "",
+          company: data.company,
+          email: data.email,
+          phone: data.phone,
+          inquiryType: "pricing",
+          message: `Pricing inquiry for ${data.productName}: ${data.message}`,
+        }),
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Pricing Request Sent",
+        description: "We'll get back to you with pricing information soon.",
+      });
+      setShowPricingForm(false);
+      setPricingFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        message: "",
+        productName: ""
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to send pricing request. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   const filterOptions = [
@@ -273,12 +328,19 @@ export default function ProductCatalog() {
                           <div>
                             <h3 className="text-lg font-semibold mb-4 text-foreground">Pricing</h3>
                             <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
-                              <div className="text-2xl font-bold text-primary mb-2">
-                                Starting at {formatPrice(product.basePrice)}
-                              </div>
-                              <p className="text-sm text-muted-foreground">
-                                Base price for white label manufacturing. Contact us for volume pricing and customization options.
+                              <p className="text-sm text-muted-foreground mb-4">
+                                Custom pricing available based on volume, specifications, and branding requirements. 
+                                Contact us for personalized quotes.
                               </p>
+                              <Button 
+                                className="w-full" 
+                                onClick={() => {
+                                  setPricingFormData(prev => ({ ...prev, productName: product.name }));
+                                  setShowPricingForm(true);
+                                }}
+                              >
+                                Contact Us for Pricing
+                              </Button>
                             </div>
                           </div>
                           
@@ -337,6 +399,96 @@ export default function ProductCatalog() {
           })}
         </div>
       </div>
+
+      {/* Pricing Form Dialog */}
+      <Dialog open={showPricingForm} onOpenChange={setShowPricingForm}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Request Pricing Information</DialogTitle>
+            <DialogDescription>
+              Get personalized pricing for {pricingFormData.productName}. We'll email you directly at chris@uplandimports.com
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input
+                id="name"
+                value={pricingFormData.name}
+                onChange={(e) => setPricingFormData(prev => ({ ...prev, name: e.target.value }))}
+                className="col-span-3"
+                placeholder="Your full name"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="email" className="text-right">
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                value={pricingFormData.email}
+                onChange={(e) => setPricingFormData(prev => ({ ...prev, email: e.target.value }))}
+                className="col-span-3"
+                placeholder="your@email.com"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="company" className="text-right">
+                Company
+              </Label>
+              <Input
+                id="company"
+                value={pricingFormData.company}
+                onChange={(e) => setPricingFormData(prev => ({ ...prev, company: e.target.value }))}
+                className="col-span-3"
+                placeholder="Your company name"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="phone" className="text-right">
+                Phone
+              </Label>
+              <Input
+                id="phone"
+                value={pricingFormData.phone}
+                onChange={(e) => setPricingFormData(prev => ({ ...prev, phone: e.target.value }))}
+                className="col-span-3"
+                placeholder="Your phone number"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="message" className="text-right">
+                Details
+              </Label>
+              <Textarea
+                id="message"
+                value={pricingFormData.message}
+                onChange={(e) => setPricingFormData(prev => ({ ...prev, message: e.target.value }))}
+                className="col-span-3"
+                placeholder="Volume requirements, customization needs, timeline..."
+                rows={3}
+              />
+            </div>
+          </div>
+          <div className="flex justify-end space-x-2">
+            <Button
+              variant="outline"
+              onClick={() => setShowPricingForm(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => pricingMutation.mutate(pricingFormData)}
+              disabled={pricingMutation.isPending || !pricingFormData.name || !pricingFormData.email}
+            >
+              {pricingMutation.isPending ? "Sending..." : "Send Request"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
