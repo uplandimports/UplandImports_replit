@@ -31,11 +31,18 @@ A professional B2B website for Upland Imports, specializing in white label Turki
    - Or use CLI: `vercel --prod`
 
 ### Deployment Configuration
-- **Framework**: Automatically detected as Vite
+- **Framework**: Vite (auto-detected)
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist/public`
+- **Install Command**: `npm install`
 - **API Routes**: Serverless functions in `/api/`
 - **Node Runtime**: `@vercel/node@2.15.10`
+
+### Critical Settings in Vercel Dashboard:
+1. **Framework Preset**: Vite
+2. **Build Command**: `npm run build`
+3. **Output Directory**: `dist/public`
+4. **Node.js Version**: 18.x (change from 22.x)
 
 ### Troubleshooting
 If you see Node.js version errors:
