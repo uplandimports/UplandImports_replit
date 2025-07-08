@@ -238,8 +238,8 @@ export default function ContactSection() {
                               <SelectContent>
                                 <SelectItem value="none">No specific model</SelectItem>
                                 {products?.map((product) => (
-                                  <SelectItem key={product.id} value={product.name}>
-                                    {product.name}
+                                  <SelectItem key={product.id} value={product.name || `product-${product.id}`}>
+                                    {product.name || `Product ${product.id}`}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -341,7 +341,9 @@ export default function ContactSection() {
                       <div>
                         <h4 className="font-semibold text-foreground">{info.title}</h4>
                         {info.details.map((detail, index) => (
-                          index === 0 ? null : null
+                          <p key={index} className="text-muted-foreground text-sm">
+                            {detail}
+                          </p>
                         ))}
                       </div>
                     </div>
