@@ -33,7 +33,7 @@ A professional B2B website for Upland Imports, specializing in white label Turki
 ### Deployment Configuration
 - **Framework**: Automatically detected as Vite
 - **Build Command**: `npm run build`
-- **Output Directory**: `dist`
+- **Output Directory**: `dist/public`
 - **API Routes**: Serverless functions in `/api/`
 - **Node Runtime**: `@vercel/node@2.15.10`
 
