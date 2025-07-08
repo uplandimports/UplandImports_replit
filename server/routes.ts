@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 import { storage } from "./storage";
 import { insertConfigurationSchema, insertInquirySchema } from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export function registerRoutes(app: Express): Server {
   // Email transporter setup
   const transporter = nodemailer.createTransport({
     service: 'gmail',
