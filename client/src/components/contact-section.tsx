@@ -46,7 +46,7 @@ export default function ContactSection() {
       phone: "",
       inquiryType: "",
       message: "",
-      selectedModel: "",
+      selectedModel: undefined,
       quantity: undefined,
       designComments: "",
     },
@@ -54,13 +54,8 @@ export default function ContactSection() {
 
   const submitInquiry = useMutation({
     mutationFn: async (data: FormData) => {
-      try {
-        const response = await apiRequest("POST", "/api/inquiries", data);
-        return response.json();
-      } catch (error) {
-        console.error("Contact form submission error:", error);
-        throw error;
-      }
+      const response = await apiRequest("POST", "/api/inquiries", data);
+      return response.json();
     },
     onSuccess: () => {
       toast({
