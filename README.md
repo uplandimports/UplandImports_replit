@@ -31,10 +31,17 @@ A professional B2B website for Upland Imports, specializing in white label Turki
    - Or use CLI: `vercel --prod`
 
 ### Deployment Configuration
-- **Framework**: Automatically detected as Vite
+- **Framework**: Vite with Express.js API
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
 - **API Routes**: Serverless functions in `/api/`
+- **Node Runtime**: Uses @vercel/node for serverless functions
+
+### Troubleshooting
+If you encounter runtime errors:
+1. Ensure environment variables are set in Vercel dashboard
+2. Check that all dependencies are in package.json
+3. Verify API routes are working locally first
 
 ### Local Development
 
