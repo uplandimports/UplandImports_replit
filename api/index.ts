@@ -88,7 +88,7 @@ app.post("/api/inquiries", async (req, res) => {
         subject: `New Business Inquiry - ${inquiry.inquiryType}`,
         html: `
           <h2>New Business Inquiry</h2>
-          <p><strong>Name:</strong> ${inquiry.name}</p>
+          <p><strong>Name:</strong> ${inquiry.firstName} ${inquiry.lastName}</p>
           ${inquiry.company ? `<p><strong>Company:</strong> ${inquiry.company}</p>` : ''}
           <p><strong>Email:</strong> ${inquiry.email}</p>
           ${inquiry.phone ? `<p><strong>Phone:</strong> ${inquiry.phone}</p>` : ''}
