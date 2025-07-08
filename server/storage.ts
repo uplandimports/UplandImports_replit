@@ -1,4 +1,4 @@
-import { products, configurations, inquiries, type Product, type Configuration, type Inquiry, type InsertProduct, type InsertConfiguration, type InsertInquiry } from "@shared/schema";
+import { products, configurations, inquiries, quotes, type Product, type Configuration, type Inquiry, type Quote, type InsertProduct, type InsertConfiguration, type InsertInquiry, type InsertQuote } from "@shared/schema";
 
 export interface IStorage {
   // Products
@@ -13,24 +13,34 @@ export interface IStorage {
   // Inquiries
   createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
   getInquiries(): Promise<Inquiry[]>;
+  
+  // Quotes
+  createQuote(quote: InsertQuote): Promise<Quote>;
+  getQuote(id: number): Promise<Quote | undefined>;
+  getQuotes(): Promise<Quote[]>;
+  updateQuoteStatus(id: number, status: string): Promise<Quote | undefined>;
+  updateQuotePricing(id: number, basePrice: string, customizationPrice: string, totalPrice: string): Promise<Quote | undefined>;
 }
 
 export class MemStorage implements IStorage {
   private products: Map<number, Product>;
   private configurations: Map<number, Configuration>;
   private inquiries: Map<number, Inquiry>;
+  private quotes: Map<number, Quote>;
   private currentProductId: number;
   private currentConfigId: number;
   private currentInquiryId: number;
+  private currentQuoteId: number;
 
   constructor() {
     this.products = new Map();
     this.configurations = new Map();
     this.inquiries = new Map();
+    this.quotes = new Map();
     this.currentProductId = 1;
     this.currentConfigId = 1;
     this.currentInquiryId = 1;
-    
+    this.currentQuoteId = 1;
     this.initializeProducts();
   }
 
@@ -185,6 +195,70 @@ export class MemStorage implements IStorage {
 
   async getInquiries(): Promise<Inquiry[]> {
     return Array.from(this.inquiries.values());
+  }
+
+  // Quote management methods
+  async createQuote(insertQuote: InsertQuote): Promise<Quote> {
+    const id = this.currentQuoteId++;
+    const quote: Quote = {
+      id,
+      firstName: insertQuote.firstName,
+      lastName: insertQuote.lastName,
+      company: insertQuote.company,
+      email: insertQuote.email,
+      phone: insertQuote.phone,
+      productId: insertQuote.productId,
+      productName: insertQuote.productName,
+      quantity: insertQuote.quantity,
+      customizations: insertQuote.customizations,
+      brandingRequirements: insertQuote.brandingRequirements,
+      timelineRequirements: insertQuote.timelineRequirements,
+      budgetRange: insertQuote.budgetRange,
+      additionalNotes: insertQuote.additionalNotes,
+      status: "pending",
+      basePrice: null,
+      customizationPrice: null,
+      totalPrice: null,
+      validUntil: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    this.quotes.set(id, quote);
+    return quote;
+  }
+
+  async getQuote(id: number): Promise<Quote | undefined> {
+    return this.quotes.get(id);
+  }
+
+  async getQuotes(): Promise<Quote[]> {
+    return Array.from(this.quotes.values());
+  }
+
+  async updateQuoteStatus(id: number, status: string): Promise<Quote | undefined> {
+    const quote = this.quotes.get(id);
+    if (quote) {
+      quote.status = status;
+      quote.updatedAt = new Date();
+      this.quotes.set(id, quote);
+    }
+    return quote;
+  }
+
+  async updateQuotePricing(id: number, basePrice: string, customizationPrice: string, totalPrice: string): Promise<Quote | undefined> {
+    const quote = this.quotes.get(id);
+    if (quote) {
+      quote.basePrice = basePrice;
+      quote.customizationPrice = customizationPrice;
+      quote.totalPrice = totalPrice;
+      quote.status = "quoted";
+      quote.updatedAt = new Date();
+      // Set quote validity to 30 days from now
+      quote.validUntil = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+      this.quotes.set(id, quote);
+    }
+    return quote;
   }
 }
 

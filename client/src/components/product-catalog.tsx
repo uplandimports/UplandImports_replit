@@ -48,7 +48,7 @@ export default function ProductCatalog() {
       return [
         "/uploads/pe-701/pe701bronze.jpeg",
         "/uploads/pe-701/pe701black.jpeg", 
-        "/uploads/pe-701/pe701green.jpeg",
+        "/uploads/pe-701/pe701-green.jpeg",
         "/uploads/pe-701/pe701camo.jpeg"
       ];
     }
