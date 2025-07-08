@@ -108,6 +108,13 @@ export default function ProductCatalog() {
       ];
     }
     
+    // PE-601 has specific image in uploads folder
+    if (product.name === "PE-601 Over-Under") {
+      return [
+        "/uploads/pe-601/pe601.jpeg"
+      ];
+    }
+    
     // For other products, use main image and generate placeholder paths
     const galleryImages = [
       product.imageUrl, // Main product image

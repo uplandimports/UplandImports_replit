@@ -70,7 +70,7 @@ export class MemStorage implements IStorage {
         category: "over-under",
         gauge: "12",
         basePrice: "1,149.00",
-        imageUrl: "https://via.placeholder.com/600x400/2D2D2D/FFD700?text=PE-601+Over-Under",
+        imageUrl: "/uploads/pe-601/pe601.jpeg",
         specifications: JSON.stringify({
           action: "Over-Under",
           barrel: "27.95\"",
