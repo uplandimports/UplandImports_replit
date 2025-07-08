@@ -10,7 +10,6 @@ export default function Footer() {
 
   const quickLinks = [
     { label: "Product Catalog", href: "catalog" },
-    { label: "Shotgun Builder", href: "builder" },
     { label: "Services", href: "services" },
     { label: "Contact", href: "contact" }
   ];

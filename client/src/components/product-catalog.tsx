@@ -41,7 +41,7 @@ export default function ProductCatalog() {
 
   if (isLoading) {
     return (
-      <section id="catalog" className="py-20 bg-white">
+      <section id="catalog" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center h-64">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -52,10 +52,10 @@ export default function ProductCatalog() {
   }
 
   return (
-    <section id="catalog" className="py-20 bg-white">
+    <section id="catalog" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
             PE-Series: Your White Label Product Line
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -88,7 +88,7 @@ export default function ProductCatalog() {
                   alt={product.name}
                   className="w-full h-48 object-cover"
                   onError={(e) => {
-                    e.currentTarget.src = `https://via.placeholder.com/600x400/374151/ffffff?text=${encodeURIComponent(product.name)}`;
+                    e.currentTarget.src = `https://via.placeholder.com/600x400/374151/FFD700?text=${encodeURIComponent(product.name)}`;
                   }}
                 />
                 <CardContent className="p-6">
@@ -96,7 +96,7 @@ export default function ProductCatalog() {
                   <p className="text-muted-foreground text-sm mb-4">{product.description}</p>
                   
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-accent font-semibold">
+                    <span className="text-primary font-semibold">
                       Starting at {formatPrice(product.basePrice)}
                     </span>
                     <Badge variant="secondary">{product.gauge} GA</Badge>

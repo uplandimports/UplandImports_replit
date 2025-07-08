@@ -100,10 +100,10 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">White Label Partnership Opportunity</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">White Label Partnership Opportunity</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Contact our business development team today to request our white label program prospectus and sample partnership agreement. Discover how we can power your branded firearms division with proven products backed by our limited lifetime warranty and dedicated support.
           </p>
@@ -111,9 +111,9 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className="bg-neutral">
+          <Card className="bg-card">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-semibold text-primary mb-6">Send us a Message</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">Send us a Message</h3>
               
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -246,7 +246,7 @@ export default function ContactSection() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold text-primary mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">Contact Information</h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
@@ -271,7 +271,7 @@ export default function ContactSection() {
             </div>
 
             {/* Why Choose Us */}
-            <Card className="gradient-primary text-primary-foreground">
+            <Card className="bg-primary text-primary-foreground">
               <CardContent className="p-8">
                 <h3 className="text-xl font-semibold mb-4">Why Choose Upland Arms?</h3>
                 <ul className="space-y-3 text-sm">
