@@ -35,17 +35,14 @@ export default function ProductCatalog() {
 
   const pricingMutation = useMutation({
     mutationFn: async (data: any) => {
-      return await apiRequest("/api/inquiries", {
-        method: "POST",
-        body: JSON.stringify({
-          firstName: data.name.split(" ")[0] || data.name,
-          lastName: data.name.split(" ").slice(1).join(" ") || "",
-          company: data.company,
-          email: data.email,
-          phone: data.phone,
-          inquiryType: "pricing",
-          message: `Pricing inquiry for ${data.productName}: ${data.message}`,
-        }),
+      return await apiRequest("POST", "/api/inquiries", {
+        firstName: data.name.split(" ")[0] || data.name,
+        lastName: data.name.split(" ").slice(1).join(" ") || "",
+        company: data.company,
+        email: data.email,
+        phone: data.phone,
+        inquiryType: "pricing",
+        message: `Pricing inquiry for ${data.productName}: ${data.message}`,
       });
     },
     onSuccess: () => {

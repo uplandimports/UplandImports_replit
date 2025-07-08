@@ -260,8 +260,8 @@ export default function ContactSection() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-foreground">{info.title}</h4>
-                        {info.details.map((detail) => (
-                          <p key={detail} className="text-muted-foreground">{detail}</p>
+                        {info.details.map((detail, index) => (
+                          index === 0 ? null : null
                         ))}
                       </div>
                     </div>
