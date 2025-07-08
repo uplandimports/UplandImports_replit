@@ -9,9 +9,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER || process.env.EMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD || process.env.EMAIL_PASS,
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
     },
+  });
+
+  // Test email configuration
+  console.log('Email config:', {
+    user: process.env.GMAIL_USER ? 'Set' : 'Not set',
+    pass: process.env.GMAIL_APP_PASSWORD ? 'Set' : 'Not set'
   });
 
   // Products routes
