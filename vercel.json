@@ -1,15 +1,10 @@
 {
   "buildCommand": "./build.sh",
   "outputDirectory": "dist/public",
-  "functions": {
-    "api/index.ts": {
-      "runtime": "@vercel/node@2.15.10"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/index"
     },
     {
       "source": "/(.*)",
