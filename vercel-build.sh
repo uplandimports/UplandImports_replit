@@ -1,8 +1,12 @@
 #!/bin/bash
 set -e
 
+echo "Current directory: $(pwd)"
+echo "Files in current directory:"
+ls -la | head -10
+
 echo "Building frontend..."
-vite build
+npx vite build
 
 echo "Creating uploads directory..."
 mkdir -p dist/public/uploads

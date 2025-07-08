@@ -1,7 +1,9 @@
 {
-  "buildCommand": "./vercel-build.sh",
-  "outputDirectory": "dist/public",
-  "installCommand": "npm install",
+  "functions": {
+    "api/index.ts": {
+      "runtime": "@vercel/node@2.15.10"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
