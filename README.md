@@ -15,20 +15,26 @@ A professional B2B website for Upland Imports, specializing in white label Turki
 
 ### Vercel Deployment
 
-1. **Install Vercel CLI**:
-   ```bash
-   npm i -g vercel
-   ```
+1. **Connect GitHub Repository**:
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Vercel will automatically detect the framework and build settings
 
-2. **Deploy**:
-   ```bash
-   vercel --prod
-   ```
-
-3. **Environment Variables**:
+2. **Environment Variables**:
    Set these in your Vercel dashboard:
    - `GMAIL_USER`: Your Gmail address
    - `GMAIL_APP_PASSWORD`: Gmail app password for SMTP
+
+3. **Deploy**:
+   - Push to GitHub main branch
+   - Vercel will automatically build and deploy
+   - Or use CLI: `vercel --prod`
+
+### Deployment Configuration
+- **Framework**: Automatically detected as Vite
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **API Routes**: Serverless functions in `/api/`
 
 ### Local Development
 
