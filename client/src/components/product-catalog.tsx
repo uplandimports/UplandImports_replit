@@ -167,7 +167,7 @@ export default function ProductCatalog() {
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-contain bg-muted"
                   onError={(e) => {
                     e.currentTarget.src = `https://via.placeholder.com/600x400/374151/FFD700?text=${encodeURIComponent(product.name)}`;
                   }}
@@ -223,7 +223,7 @@ export default function ProductCatalog() {
                             <img
                               src={galleryImages[selectedImageIndex]}
                               alt={`${product.name} - Image ${selectedImageIndex + 1}`}
-                              className="w-full h-80 object-cover rounded-lg"
+                              className="w-full h-80 object-contain bg-muted rounded-lg"
                               onError={(e) => {
                                 e.currentTarget.src = `https://via.placeholder.com/600x400/374151/FFD700?text=${encodeURIComponent(product.name)}`;
                               }}
@@ -266,7 +266,7 @@ export default function ProductCatalog() {
                                   <img
                                     src={image}
                                     alt={`${product.name} thumbnail ${index + 1}`}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-contain bg-muted"
                                     onError={(e) => {
                                       e.currentTarget.src = `https://via.placeholder.com/200x200/374151/FFD700?text=${index + 1}`;
                                     }}
