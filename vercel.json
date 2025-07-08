@@ -1,5 +1,5 @@
 {
-  "buildCommand": "vite build && mkdir -p dist/public/uploads && cp -r uploads/* dist/public/uploads/",
+  "buildCommand": "./vercel-build.sh",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
   "rewrites": [
