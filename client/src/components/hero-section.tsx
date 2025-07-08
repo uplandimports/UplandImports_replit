@@ -29,15 +29,7 @@ export default function HeroSection() {
                 <Eye className="mr-2 h-5 w-5" />
                 View Catalog
               </Button>
-              <Button
-                onClick={() => scrollToSection('builder')}
-                variant="outline"
-                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                size="lg"
-              >
-                <Settings className="mr-2 h-5 w-5" />
-                Build Custom
-              </Button>
+
             </div>
           </div>
           <div className="relative">

@@ -2,7 +2,6 @@ import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import ServicesOverview from "@/components/services-overview";
 import ProductCatalog from "@/components/product-catalog";
-import ShotgunBuilder from "@/components/shotgun-builder";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 
@@ -14,7 +13,6 @@ export default function Home() {
         <HeroSection />
         <ServicesOverview />
         <ProductCatalog />
-        <ShotgunBuilder />
         <ContactSection />
       </main>
       <Footer />
