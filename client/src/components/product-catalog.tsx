@@ -43,13 +43,22 @@ export default function ProductCatalog() {
   };
 
   const getProductGallery = (product: Product) => {
-    // Generate multiple product images for gallery
+    // PE-701 has specific images in uploads folder
+    if (product.name === "PE-701 Bullpup") {
+      return [
+        "/uploads/pe-701/pe701bronze.jpeg",
+        "/uploads/pe-701/pe701black.jpeg", 
+        "/uploads/pe-701/pe701green.jpeg",
+        "/uploads/pe-701/pe701camo.jpeg"
+      ];
+    }
+    
+    // For other products, use main image and generate placeholder paths
     const galleryImages = [
       product.imageUrl, // Main product image
       `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-1.jpg`,
       `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-2.jpg`,
       `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-3.jpg`,
-      `/uploads/${product.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}/detail-4.jpg`,
     ];
     
     return galleryImages.filter(Boolean);
