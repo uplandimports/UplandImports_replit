@@ -125,6 +125,14 @@ export default function ProductCatalog() {
       ];
     }
     
+    // PE-301 has specific images in uploads folder
+    if (product.name === "PE-301 Semi-Auto") {
+      return [
+        "/uploads/pe-301/PE301.jpeg",
+        "/uploads/pe-301/301wood.jpeg"
+      ];
+    }
+    
     // For other products, use main image and generate placeholder paths
     const galleryImages = [
       product.imageUrl, // Main product image
