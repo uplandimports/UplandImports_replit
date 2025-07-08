@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Upland Arms</h3>
+            <h3 className="text-2xl font-bold mb-4">Upland Imports</h3>
             <p className="text-muted-foreground mb-4">
               Our turnkey white label program includes dedicated production capacity, customized QC processes, and seamless importation services. Join dozens of successful brands who have already leveraged our manufacturing capabilities to create profitable, premium firearm offerings.
             </p>
@@ -78,7 +78,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-          <p>&copy; 2024 Upland Arms. All rights reserved. | Privacy Policy | Terms of Service</p>
+          <p>&copy; 2024 Upland Imports. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
       </div>
     </footer>

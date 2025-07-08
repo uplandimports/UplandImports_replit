@@ -34,11 +34,11 @@ export default function HeroSection() {
           </div>
           <div className="relative">
             <img
-              src="https://via.placeholder.com/800x500/374151/FFD700?text=UPLAND+ARMS+PE-SERIES"
+              src="https://via.placeholder.com/800x500/374151/FFD700?text=UPLAND+IMPORTS+PE-SERIES"
               alt="Premium Turkish shotgun display"
               className="rounded-xl shadow-2xl w-full"
               onError={(e) => {
-                e.currentTarget.src = "https://via.placeholder.com/800x500/374151/FFD700?text=UPLAND+ARMS";
+                e.currentTarget.src = "https://via.placeholder.com/800x500/374151/FFD700?text=UPLAND+IMPORTS";
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-xl"></div>

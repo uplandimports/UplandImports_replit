@@ -88,7 +88,7 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      details: ["chris@uplandarms.com", "info@uplandarms.com", "sales@uplandarms.com"]
+      details: ["chris@uplandimports.com", "info@uplandimports.com", "sales@uplandimports.com"]
     },
     {
       icon: Phone,
@@ -223,6 +223,75 @@ export default function ContactSection() {
                     )}
                   />
 
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="selectedModel"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Model of Interest (Optional)</FormLabel>
+                          <FormControl>
+                            <Select onValueChange={field.onChange} value={field.value}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a model" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="none">No specific model</SelectItem>
+                                {products?.map((product) => (
+                                  <SelectItem key={product.id} value={product.name}>
+                                    {product.name}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="quantity"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Estimated Quantity (Optional)</FormLabel>
+                          <FormControl>
+                            <Input 
+                              type="number" 
+                              placeholder="e.g., 500" 
+                              {...field}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                field.onChange(value === "" ? undefined : parseInt(value));
+                              }}
+                              value={field.value || ""}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="designComments"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Design Elements & Customization Notes (Optional)</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            rows={3}
+                            placeholder="Describe any specific design elements, customizations, or branding requirements..."
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
                   <FormField
                     control={form.control}
                     name="message"
@@ -284,7 +353,7 @@ export default function ContactSection() {
             {/* Why Choose Us */}
             <Card className="bg-primary text-primary-foreground">
               <CardContent className="p-8">
-                <h3 className="text-xl font-semibold mb-4">Why Choose Upland Arms?</h3>
+                <h3 className="text-xl font-semibold mb-4">Why Choose Upland Imports?</h3>
                 <ul className="space-y-3 text-sm">
                   {features.map((feature) => (
                     <li key={feature} className="flex items-center">

@@ -1,8 +1,8 @@
-# Upland Arms - Turkish Shotgun Manufacturing Platform
+# Upland Imports - Turkish Shotgun Manufacturing Platform
 
 ## Overview
 
-Upland Arms is a full-stack web application for a Turkish shotgun manufacturing company that specializes in white label services and custom firearm configurations. The platform serves as both a product catalog and a business inquiry system, allowing potential clients to browse premium shotgun models, configure custom specifications, and submit business inquiries for white label manufacturing services.
+Upland Imports is a full-stack web application for a Turkish shotgun manufacturing company that specializes in white label services and custom firearm configurations. The platform serves as both a product catalog and a business inquiry system, allowing potential clients to browse premium shotgun models, configure custom specifications, and submit business inquiries for white label manufacturing services.
 
 ## System Architecture
 

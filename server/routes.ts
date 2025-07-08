@@ -90,6 +90,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
           <p><strong>Inquiry Type:</strong> ${inquiry.inquiryType}</p>
           <p><strong>Message:</strong></p>
           <p>${inquiry.message}</p>
+          ${inquiry.selectedModel ? `<p><strong>Model of Interest:</strong> ${inquiry.selectedModel}</p>` : ''}
+          ${inquiry.quantity ? `<p><strong>Estimated Quantity:</strong> ${inquiry.quantity}</p>` : ''}
+          ${inquiry.designComments ? `<p><strong>Design Comments:</strong> ${inquiry.designComments}</p>` : ''}
           ${inquiry.configurationId ? `<p><strong>Configuration ID:</strong> ${inquiry.configurationId}</p>` : ''}
           <p><strong>Submitted:</strong> ${inquiry.createdAt}</p>
         `,
