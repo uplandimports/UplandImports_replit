@@ -3,7 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Info, Loader2 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import { Info, Loader2, Eye, Star, Shield, Zap, Target } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@shared/schema";
 
@@ -117,10 +119,137 @@ export default function ProductCatalog() {
                     </div>
                   </div>
                   
-                  <Button className="w-full" variant="outline">
-                    <Info className="mr-2 h-4 w-4" />
-                    View Details
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full" variant="outline">
+                        <Eye className="mr-2 h-4 w-4" />
+                        View Details
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold text-foreground">
+                          {product.name}
+                        </DialogTitle>
+                      </DialogHeader>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                        {/* Product Image */}
+                        <div className="space-y-4">
+                          <img
+                            src={product.imageUrl}
+                            alt={product.name}
+                            className="w-full h-64 object-cover rounded-lg"
+                            onError={(e) => {
+                              e.currentTarget.src = `https://via.placeholder.com/600x400/374151/FFD700?text=${encodeURIComponent(product.name)}`;
+                            }}
+                          />
+                          <div className="flex flex-wrap gap-2">
+                            <Badge variant="secondary" className="text-sm">
+                              {product.gauge} GA
+                            </Badge>
+                            <Badge variant="outline" className="text-sm">
+                              {product.category}
+                            </Badge>
+                          </div>
+                        </div>
+                        
+                        {/* Product Details */}
+                        <div className="space-y-6">
+                          <div>
+                            <h3 className="text-lg font-semibold mb-2 text-foreground">Description</h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {product.description}
+                            </p>
+                          </div>
+                          
+                          <Separator />
+                          
+                          <div>
+                            <h3 className="text-lg font-semibold mb-4 text-foreground">Specifications</h3>
+                            <div className="grid grid-cols-1 gap-3">
+                              <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                                <span className="font-medium">Barrel Configuration:</span>
+                                <span className="text-muted-foreground">{specs.barrels}</span>
+                              </div>
+                              <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                                <span className="font-medium">Choke System:</span>
+                                <span className="text-muted-foreground">{specs.choke}</span>
+                              </div>
+                              <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                                <span className="font-medium">Stock Material:</span>
+                                <span className="text-muted-foreground">{specs.stock}</span>
+                              </div>
+                              <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                                <span className="font-medium">Gauge:</span>
+                                <span className="text-muted-foreground">{product.gauge} GA</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <Separator />
+                          
+                          <div>
+                            <h3 className="text-lg font-semibold mb-4 text-foreground">Pricing</h3>
+                            <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                              <div className="text-2xl font-bold text-primary mb-2">
+                                Starting at {formatPrice(product.basePrice)}
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Base price for white label manufacturing. Contact us for volume pricing and customization options.
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <Separator />
+                          
+                          <div>
+                            <h3 className="text-lg font-semibold mb-4 text-foreground">White Label Features</h3>
+                            <div className="grid grid-cols-1 gap-3">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                                  <Star className="w-4 h-4 text-primary" />
+                                </div>
+                                <span className="text-sm text-muted-foreground">Your brand engraving and customization</span>
+                              </div>
+                              <div className="flex items-center space-x-3">
+                                <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                                  <Shield className="w-4 h-4 text-primary" />
+                                </div>
+                                <span className="text-sm text-muted-foreground">Quality assurance and testing protocols</span>
+                              </div>
+                              <div className="flex items-center space-x-3">
+                                <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                                  <Zap className="w-4 h-4 text-primary" />
+                                </div>
+                                <span className="text-sm text-muted-foreground">Fast turnaround and reliable delivery</span>
+                              </div>
+                              <div className="flex items-center space-x-3">
+                                <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                                  <Target className="w-4 h-4 text-primary" />
+                                </div>
+                                <span className="text-sm text-muted-foreground">Flexible MOQ and scalable production</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="pt-4">
+                            <Button 
+                              className="w-full" 
+                              onClick={() => {
+                                const contactElement = document.getElementById('contact');
+                                if (contactElement) {
+                                  contactElement.scrollIntoView({ behavior: 'smooth' });
+                                }
+                              }}
+                            >
+                              Request Quote for {product.name}
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
             );
