@@ -184,9 +184,17 @@ export default function ProductCatalog() {
                   <p className="text-muted-foreground text-sm mb-4">{product.description}</p>
                   
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-primary font-semibold">
-                      Contact us for pricing
-                    </span>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        setPricingFormData(prev => ({ ...prev, productName: product.name }));
+                        setShowPricingForm(true);
+                      }}
+                      className="text-primary hover:bg-primary hover:text-primary-foreground"
+                    >
+                      Contact for Pricing
+                    </Button>
                     <Badge variant="secondary">{product.gauge} GA</Badge>
                   </div>
                   
